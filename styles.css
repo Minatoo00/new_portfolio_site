@@ -386,7 +386,7 @@ p {
 /* #tools カード内テキスト幅を少し狭く（可読性向上） */
 #tools .card-header,
 #tools .card-content {
-  max-width: 560px;
+  max-width: 360px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -395,7 +395,7 @@ p {
 @media (max-width: 900px) {
   #tools .card-header,
   #tools .card-content {
-    max-width: 520px;
+    max-width: 340px;
   }
 }
 
