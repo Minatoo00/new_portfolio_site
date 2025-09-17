@@ -126,38 +126,39 @@
                     </div>
                 </div>
 
-                <!-- 技術実装詳細 -->
+                <!-- 主要機能 -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>システム構成と主要機能</h2>
+                    <h2>主要機能</h2>
+                    <p class="text-sub">体調の変化を科学的に分析し、個人に適した改善策を提供する3つの核となる機能です。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
-                            <h3>初回アンケート（Initial Survey）</h3>
-                            <p>睡眠・運動・集中傾向などの基礎情報を保存（ユーザー毎に1件）。</p>
+                            <h3>📋 個人プロフィール設定</h3>
+                            <p>初回登録時に睡眠・運動・集中傾向などの基礎情報を収集。この情報が分析の文脈として活用されます。</p>
                             <ul class="feature-list">
-                                <li>Next.js App Router + Prisma（SQLite）</li>
-                                <li>サーバーAPI: POST /api/survey</li>
-                                <li>最大2件までの期待カテゴリ選択</li>
+                                <li>生活習慣と認知スタイルの詳細調査</li>
+                                <li>期待するサポート内容の事前設定</li>
+                                <li>個別化分析のベースライン構築</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>フィードバック解析（初回）</h3>
-                            <p>自由記述を受け取り、アンケート文脈と合わせてLLMに送信。</p>
+                            <h3>🧠 AI体調分析</h3>
+                            <p>日々の体調報告を脳科学の観点から分析。関連する脳部位や行動パターンを特定し、原因の仮説を構築します。</p>
                             <ul class="feature-list">
-                                <li>API: POST /api/feedback</li>
-                                <li>OpenRouter Chat Completionsを使用</li>
-                                <li>JSONのみを抽出し、Zodで最低限バリデーション</li>
+                                <li>自然言語での体調報告を詳細分析</li>
+                                <li>脳部位と行動パターンの関連性特定</li>
+                                <li>個人プロフィールとの統合分析</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>フォローアップと仮説生成</h3>
-                            <p>はい/いいえ回答を受け取り、必要に応じて次の質問または仮説と提案を返す。</p>
+                            <h3>💬 対話型原因探索</h3>
+                            <p>初期分析結果をもとに、「はい/いいえ」で答えられる質問を自動生成。対話を通じて原因を絞り込みます。</p>
                             <ul class="feature-list">
-                                <li>API: POST /api/feedback/followup</li>
-                                <li>最大3ラウンドまでの対話履歴を保存</li>
-                                <li>完了時に仮説と最大3つの提案を保存</li>
+                                <li>個別化された確認質問の自動生成</li>
+                                <li>段階的な原因絞り込みプロセス</li>
+                                <li>脳科学的根拠に基づく改善提案</li>
                             </ul>
                         </div>
                     </div>
