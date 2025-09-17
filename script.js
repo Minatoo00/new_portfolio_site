@@ -162,6 +162,9 @@
         // モバイルでのアドレスバー対応
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+        // ツールカード高さ再計算
+        equalizeToolCardHeights();
     }
 
     // フォーム送信の処理（将来の拡張用）
@@ -218,6 +221,44 @@
                 observer.observe(element);
             });
         }
+    }
+
+    // ツールカード（Cursor/Codex/ChatGPT）のブロック高さ揃え
+    function equalizeToolCardHeights() {
+        const toolsSection = document.querySelector('#tools');
+        if (!toolsSection) return;
+
+        const cards = toolsSection.querySelectorAll('.card');
+        if (cards.length === 0) return;
+
+        // 各カード内の対象ブロックを取得
+        const blocksByCard = Array.from(cards).map(card => ({
+            description: card.querySelector('.card-description'),
+            features: card.querySelector('.feature-list'),
+            skills: card.querySelector('.skill-tags')
+        }));
+
+        // 現在のminHeightをリセット
+        blocksByCard.forEach(b => {
+            if (b.description) b.description.style.minHeight = '';
+            if (b.features) b.features.style.minHeight = '';
+            if (b.skills) b.skills.style.minHeight = '';
+        });
+
+        // 各ブロックタイプの最大高さを算出
+        const maxHeights = { description: 0, features: 0, skills: 0 };
+        blocksByCard.forEach(b => {
+            if (b.description) maxHeights.description = Math.max(maxHeights.description, b.description.offsetHeight);
+            if (b.features) maxHeights.features = Math.max(maxHeights.features, b.features.offsetHeight);
+            if (b.skills) maxHeights.skills = Math.max(maxHeights.skills, b.skills.offsetHeight);
+        });
+
+        // 算出した最大値でmin-heightを設定
+        blocksByCard.forEach(b => {
+            if (b.description) b.description.style.minHeight = maxHeights.description + 'px';
+            if (b.features) b.features.style.minHeight = maxHeights.features + 'px';
+            if (b.skills) b.skills.style.minHeight = maxHeights.skills + 'px';
+        });
     }
 
     // エラーハンドリング
@@ -422,6 +463,10 @@
             initializeContactDropdown(); // コンタクトドロップダウン初期化
             respectUserMotionPreferences();
             handleResize(); // 初回実行
+            // 初回の高さ揃え（画像やフォントロード後にも再実行）
+            equalizeToolCardHeights();
+            window.setTimeout(equalizeToolCardHeights, 200);
+            window.addEventListener('load', equalizeToolCardHeights);
             
             // パフォーマンス監視（開発環境のみ）
             if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
