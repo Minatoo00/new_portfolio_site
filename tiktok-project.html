@@ -126,38 +126,39 @@
                     </div>
                 </div>
 
-                <!-- システム設計詳細 -->
+                <!-- 主要機能 -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>システムアーキテクチャと主要機能</h2>
+                    <h2>主要機能</h2>
+                    <p class="text-sub">信頼性の高い動画変換を実現する3層のフォールバック機能を実装しています。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
-                            <h3>多層フォールバック機能</h3>
-                            <p>外部APIを固定の順序で呼び出します：</p>
+                            <h3>🔄 多段階フォールバック</h3>
+                            <p>複数の変換手法を組み合わせて、失敗時の代替手段を確保。一つの方法が失敗しても自動的に次の方法を試行します。</p>
                             <ul class="feature-list">
-                                <li><strong>順序:</strong> TikWM → SSSTik → SnapTik → TiklyDown</li>
-                                <li><strong>条件:</strong> 先に成功したAPIの動画URLを採用</li>
-                                <li><strong>タイムアウト:</strong> 各API 15秒</li>
+                                <li>外部API群（TikWM、SSSTik、SnapTik、TiklyDown）</li>
+                                <li>Puppeteerによるページスクレイピング</li>
+                                <li>yt-dlpによる最終フォールバック</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>ストリーム最適化処理</h3>
-                            <p>Node.jsのストリームでファイルを保存：</p>
+                            <h3>⚡ 高速ストリーム処理</h3>
+                            <p>Node.jsのストリーム機能を活用して、メモリ効率的な動画ダウンロードを実現。大容量ファイルも安定して処理できます。</p>
                             <ul class="feature-list">
-                                <li><strong>HTTP GET (stream):</strong> axiosのresponseType=stream</li>
-                                <li><strong>保存先:</strong> downloads/ ディレクトリ</li>
-                                <li><strong>ファイル名:</strong> タイトル+タイムスタンプ+短いUUID</li>
+                                <li>ストリーミングによるメモリ効率化</li>
+                                <li>自動ファイル名生成（タイトル+タイムスタンプ+UUID）</li>
+                                <li>品質別ダウンロード（HD優先、標準画質フォールバック）</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>ユーザビリティ・UI設計</h3>
-                            <p>必要最小限のUI：</p>
+                            <h3>🎯 シンプルなUI/UX</h3>
+                            <p>複雑な内部処理を隠し、ユーザーには最小限の操作で最大の結果を提供。リアルタイムフィードバックで進行状況を表示します。</p>
                             <ul class="feature-list">
-                                <li><strong>URL入力 → 変換開始</strong> の2アクション</li>
-                                <li><strong>結果表示:</strong> タイトル/作者/画質/ファイル名</li>
-                                <li><strong>ダウンロードリンク:</strong> /downloads/{file} を返却</li>
+                                <li>URL入力→変換開始の2ステップ操作</li>
+                                <li>変換中のローディング表示とプログレス</li>
+                                <li>成功/エラー時の詳細情報表示</li>
                             </ul>
                         </div>
                     </div>
