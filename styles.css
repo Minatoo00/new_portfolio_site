@@ -347,6 +347,33 @@ p {
   margin-bottom: var(--space-5);
 }
 
+/* ツールカード（#tools）内の縦位置を統一 */
+#tools .card-header {
+  min-height: 84px;
+}
+#tools .card-content {
+  display: flex;
+  flex-direction: column;
+}
+#tools .card-description {
+  flex: 0 0 auto;
+  min-height: 120px;
+}
+#tools .feature-list {
+  flex: 0 0 auto;
+  min-height: 108px;
+}
+#tools .skill-tags {
+  min-height: 64px;
+}
+
+@media (max-width: 600px) {
+  #tools .card-header { min-height: 72px; }
+  #tools .card-description { min-height: 96px; }
+  #tools .feature-list { min-height: 96px; }
+  #tools .skill-tags { min-height: 48px; }
+}
+
 /* ナビゲーション */
 .navigation {
   position: fixed;
