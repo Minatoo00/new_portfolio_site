@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鈴木皆人 - AI・LLMエンジニア | ポートフォリオ</title>
+    <meta name="description" content="脳神経科学とテクノロジーを融合したAI活用開発（バイブコーディング）を専門とするエンジニアのポートフォリオサイトです。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="author" content="鈴木皆人">
+    <meta name="keywords" content="AI, LLM, バイブコーディング, 脳神経科学, Webエンジニア, Python, JavaScript">
+    <meta property="og:title" content="鈴木皆人 - AI・LLMエンジニア">
+    <meta property="og:description" content="脳神経科学とテクノロジーを融合したAI活用開発を専門とするエンジニア">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-content">
+            <a href="#home" class="nav-brand" aria-label="ホームに戻る">鈴木皆人</a>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#home" class="nav-link active" role="menuitem">ホーム</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem">プロジェクト</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">プロフィール</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">コンタクト</a></li>
+            </ul>
+            
+            <div class="contact-dropdown">
+                <button class="button button-primary tappable contact-trigger" aria-label="お問い合わせ方法を選択" aria-expanded="false">
+                    お問い合わせ
+                    <span class="dropdown-icon">▾</span>
+                </button>
+                <div class="contact-options" role="menu" aria-hidden="true">
+                    <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" 
+                       class="contact-option" role="menuitem">
+                        <span class="contact-icon">✉️</span>
+                        メールアプリで開く
+                    </a>
+                    <button class="contact-option copy-email-btn" role="menuitem" data-email="minato2ban@icloud.com">
+                        <span class="contact-icon">📋</span>
+                        メールアドレスをコピー
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="home" class="hero section">
+            <div class="container">
+                <h1 class="hero-title">
+                    脳神経科学 × AI で<br>
+                    未来のシステムを構築
+                </h1>
+                
+                <p class="hero-subtitle">
+                    バイブコーディングエンジニア
+                </p>
+                
+                <p class="hero-description">
+                    脳神経科学の視点を取り入れたAI活用開発を専門とし、LLMを駆使したWebアプリケーションや動画生成システムの実装・検証を行っています。PoC（概念実証）を数多く作成し、実証的なアプローチで技術の可能性を探求しています。
+                </p>
+                
+                <div class="flex flex-center flex-gap">
+                    <a href="#projects" class="button button-primary">
+                        プロジェクトを見る
+                    </a>
+                    <a href="#about" class="button button-secondary">
+                        プロフィール
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロジェクトセクション -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>主要プロジェクト</h2>
+                <p class="text-sub">AI・LLMを活用した実装プロジェクトをご紹介します。</p>
+                
+                <div class="grid grid-auto" style="margin-top: var(--space-8);">
+                    <!-- Veo3動画生成ツール -->
+                    <article class="card project-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Veo3向け動画そっくり生成ツール</h3>
+                            <p class="card-subtitle">Webアプリケーション</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="card-description">任意の入力動画から、ほぼ同等の映像を再生成できるVeo3用JSONプロンプトを自動作成するツールです。Vertex AI（Gemini 2.5-flash）による動画解析とLLMによる構造化を組み合わせ、安定再現性を重視した設計を実現しました。</p>
+                            
+                            <div class="skill-tags">
+                                <span class="skill-tag">Vertex AI</span>
+                                <span class="skill-tag">Gemini 2.5-flash</span>
+                                <span class="skill-tag">OpenRouter</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="veo3-project.html" class="button button-primary">詳細を見る</a>
+                        </div>
+                    </article>
+
+                    <!-- 脳神経科学悩み相談アプリ -->
+                    <article class="card project-card">
+                        <div class="card-header">
+                            <h3 class="card-title">脳神経科学に基づく悩み相談アプリ</h3>
+                            <p class="card-subtitle">Webアプリケーション</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="card-description">ユーザーの気分・集中・疲労状態を入力すると、脳科学的視点で状態を解釈し、実践的なアドバイスを提示するアプリです。説明可能性を重視し、アドバイスに根拠カテゴリを紐付けて提供します。</p>
+                            
+                            <div class="skill-tags">
+                                <span class="skill-tag">OpenRouter</span>
+                                <span class="skill-tag">SQLite</span>
+                                <span class="skill-tag">脳神経科学</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Flask</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="neuro-project.html" class="button button-primary">詳細を見る</a>
+                        </div>
+                    </article>
+
+                    <!-- TikTok変換アプリ -->
+                    <article class="card project-card">
+                        <div class="card-header">
+                            <h3 class="card-title">TikTok → MP4 変換ツール</h3>
+                            <p class="card-subtitle">Webアプリケーション</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="card-description">TikTok動画URLからMP4ファイルを生成するツールです。複数のAPIへのフォールバック設計により高い可用性を実現し、エラー処理とレート制御を考慮したユーザーフレンドリーな実装を行いました。</p>
+                            
+                            <div class="skill-tags">
+                                <span class="skill-tag">API連携</span>
+                                <span class="skill-tag">ストリーム処理</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="tiktok-project.html" class="button button-primary">詳細を見る</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロフィールセクション -->
+        <section id="about" class="section" style="background: var(--bg-elev);">
+            <div class="container">
+                <h2>プロフィール</h2>
+                
+                <div class="grid grid-2" style="margin-top: var(--space-8); align-items: start;">
+                    <!-- 基本情報 -->
+                    <div>
+                        <h3>基本情報</h3>
+                        <div style="margin-top: var(--space-4);">
+                            <p><strong>氏名：</strong>鈴木 皆人（Minato Suzuki）</p>
+                            <p><strong>年齢：</strong>22歳</p>
+                            <p><strong>所在地：</strong>東京都</p>
+                            <p><strong>専門分野：</strong>脳神経科学 × テクノロジー / AI活用開発</p>
+                        </div>
+
+                        <h3 style="margin-top: var(--space-6);">経歴</h3>
+                        <div style="margin-top: var(--space-4);">
+                            <p><strong>2019–2022：</strong>宮崎県立宮崎西高等学校</p>
+                            <p><strong>2022–2023：</strong>カナダ・Tamwood（Language School / Digital Marketing）</p>
+                            <p><strong>現在：</strong>AI駆動型の開発ワークフロー（バイブコーディング）を中心に、Webアプリや動画生成システムの実装・検証を推進中</p>
+                        </div>
+                    </div>
+
+                    <!-- スキル -->
+                    <div>
+                        <h3>技術スキル</h3>
+                        
+                        <div style="margin-top: var(--space-4);">
+                            <h4>プログラミング言語</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Bash/Shell</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-5);">
+                            <h4>フレームワーク・ライブラリ</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Flask</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Next.js</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-5);">
+                            <h4>AI・クラウド・ツール</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Vertex AI</span>
+                                <span class="skill-tag">OpenRouter</span>
+                                <span class="skill-tag">Google Cloud</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Git/GitHub</span>
+                                <span class="skill-tag">SQLite</span>
+                                <span class="skill-tag">Firebase</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-5);">
+                            <h4>動画・メディア制作</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Adobe Premiere Pro</span>
+                                <span class="skill-tag">CapCut</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--space-8); text-align: center;">
+                    <h3>開発スタイル</h3>
+                    <p class="text-sub" style="max-width: 600px; margin: var(--space-4) auto 0;">
+                        PoC（概念実証）を数多く作成し、実証的なアプローチで技術の可能性を探求。
+                        AI支援開発ツールを活用したバイブコーディングにより、
+                        迅速なプロトタイピングと検証サイクルを実現しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- コンタクトセクション -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                    <h2>お問い合わせ</h2>
+                    <p class="text-sub">プロジェクトのご相談やコラボレーションのご提案など、お気軽にお声がけください。</p>
+                    
+                    <div style="margin-top: var(--space-8);">
+                        <div class="flex flex-center flex-gap">
+                            <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" class="button button-primary">
+                                メールアプリで開く
+                            </a>
+                            <button class="button button-secondary copy-email-btn" data-email="minato2ban@icloud.com">
+                                メールアドレスをコピー
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: var(--space-6);">
+                        <p class="text-caption">
+                            <strong>Email:</strong> minato2ban@icloud.com<br>
+                            <strong>Location:</strong> 東京都
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer style="background: var(--bg-elev); padding: var(--space-6) 0; text-align: center; border-top: 1px solid var(--border);">
+        <div class="container">
+            <p class="text-caption">
+                © 2025 鈴木皆人（Minato Suzuki）. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

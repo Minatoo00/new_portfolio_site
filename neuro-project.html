@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脳神経科学に基づく悩み相談アプリ - プロジェクト詳細</title>
+    <meta name="description" content="脳科学的視点でユーザーの状態を解釈し、実践的なアドバイスを提示するWebアプリケーション">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand" aria-label="ホームに戻る">鈴木皆人</a>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">ホーム</a></li>
+                <li role="none"><a href="index.html#projects" class="nav-link active" role="menuitem">プロジェクト</a></li>
+                <li role="none"><a href="index.html#about" class="nav-link" role="menuitem">プロフィール</a></li>
+                <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">コンタクト</a></li>
+            </ul>
+            
+            <div class="contact-dropdown">
+                <button class="button button-primary tappable contact-trigger" aria-label="お問い合わせ方法を選択" aria-expanded="false">
+                    お問い合わせ
+                    <span class="dropdown-icon">▾</span>
+                </button>
+                <div class="contact-options" role="menu" aria-hidden="true">
+                    <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" 
+                       class="contact-option" role="menuitem">
+                        <span class="contact-icon">✉️</span>
+                        メールアプリで開く
+                    </a>
+                    <button class="contact-option copy-email-btn" role="menuitem" data-email="minato2ban@icloud.com">
+                        <span class="contact-icon">📋</span>
+                        メールアドレスをコピー
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- プロジェクトヒーロー -->
+        <section class="project-hero section">
+            <div class="container">
+                <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
+                
+                <h1>脳神経科学に基づく悩み相談アプリ</h1>
+                <p class="hero-subtitle">脳科学 × AI によるパーソナライズド・アドバイス</p>
+                
+                <p class="hero-description">
+                    ユーザーの気分・集中・疲労状態を入力すると、脳神経科学的な視点で状態を解釈し、実践的なアドバイスを提示するWebアプリケーション。説明可能性を重視し、科学的根拠に基づいたアプローチを提供します。
+                </p>
+            </div>
+        </section>
+
+        <!-- プロジェクト詳細 -->
+        <section class="section">
+            <div class="container">
+                <!-- プロジェクトメタ情報 -->
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト期間</div>
+                        <div class="project-meta-value">2024年中期</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">役割</div>
+                        <div class="project-meta-value">フルスタック開発・脳科学研究</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト種別</div>
+                        <div class="project-meta-value">個人開発・研究ベース</div>
+                    </div>
+                </div>
+
+                <!-- 課題と解決アプローチ -->
+                <div class="grid grid-2" style="margin-top: var(--space-8);">
+                    <div>
+                        <h2>解決したい課題</h2>
+                        <p>従来のメンタルヘルスアプリは表面的なアドバイスが多く、個人の脳機能特性や神経学的状態を考慮していない。以下の課題を解決したいと考えました：</p>
+                        
+                        <ul class="feature-list">
+                            <li>一般的すぎるアドバイスで実効性が低い</li>
+                            <li>科学的根拠が不明確で信頼性に欠ける</li>
+                            <li>ユーザー固有の脳機能パターンを無視</li>
+                            <li>短期的対処法のみで根本的改善に至らない</li>
+                            <li>「なぜこのアドバイスなのか」の説明不足</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2>脳神経科学的アプローチ</h2>
+                        <p>脳神経科学の知見とAI技術を組み合わせ、科学的根拠に基づくパーソナライズドアドバイスシステムを開発：</p>
+                        
+                        <div class="highlight-box">
+                            <h4>神経基盤マッピング</h4>
+                            <p>注意・動機づけ・実行機能など、脳の各領域と心理状態を関連付け</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>多層解析システム</h4>
+                            <p>セルフレポートから神経学的状態を推定し、適切な介入ポイントを特定</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>説明可能AI</h4>
+                            <p>アドバイスの根拠を脳科学的観点から明確に説明</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技術実装詳細 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>システム構成と主要機能</h2>
+                    
+                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
+                        <div class="card">
+                            <h3>セルフレポート解析</h3>
+                            <p>ユーザーの主観的状態から神経学的指標を推定：</p>
+                            <ul class="feature-list">
+                                <li><strong>注意システム評価：</strong>集中力・注意分割・持続性</li>
+                                <li><strong>情動調節機能：</strong>気分安定性・ストレス耐性</li>
+                                <li><strong>実行機能：</strong>計画・抑制・認知柔軟性</li>
+                                <li><strong>動機づけ系：</strong>報酬感受性・目標指向性</li>
+                                <li><strong>睡眠・概日リズム：</strong>覚醒パターン・疲労蓄積</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>AI推論エンジン</h3>
+                            <p>OpenRouter経由のLLMで脳科学的フレームワークに基づく解析：</p>
+                            <ul class="feature-list">
+                                <li><strong>状態パターン認識：</strong>神経回路の活動パターン推定</li>
+                                <li><strong>因果関係分析：</strong>症状間の神経学的関連性</li>
+                                <li><strong>介入ポイント特定：</strong>最も効果的な改善アプローチ</li>
+                                <li><strong>個別差考慮：</strong>パーソナリティ・認知特性の反映</li>
+                                <li><strong>時系列変化：</strong>状態の変化パターンと予測</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>アドバイス生成システム</h3>
+                            <p>科学的根拠に基づく二層構造のアドバイス：</p>
+                            <ul class="feature-list">
+                                <li><strong>即効介入：</strong>神経可塑性を活用した短期改善法</li>
+                                <li><strong>習慣化戦略：</strong>脳構造変化を促す長期アプローチ</li>
+                                <li><strong>根拠カテゴリ：</strong>睡眠・運動・認知・社会的要因</li>
+                                <li><strong>実践難易度：</strong>実行可能性と効果のバランス</li>
+                                <li><strong>進捗追跡：</strong>神経適応過程のモニタリング</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 脳科学的根拠 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>活用した脳神経科学の知見</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>神経回路レベルの理解</h3>
+                            <ul class="feature-list">
+                                <li><strong>前頭前皮質：</strong>実行機能・意思決定・感情制御</li>
+                                <li><strong>辺縁系：</strong>情動処理・記憶・動機づけ</li>
+                                <li><strong>注意ネットワーク：</strong>注意の向上・維持・分割</li>
+                                <li><strong>デフォルトモード：</strong>休息状態・自己参照・内省</li>
+                                <li><strong>報酬系：</strong>ドーパミン・動機・習慣形成</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3>神経可塑性・適応メカニズム</h3>
+                            <ul class="feature-list">
+                                <li><strong>シナプス可塑性：</strong>学習・記憶・行動変化</li>
+                                <li><strong>神経新生：</strong>新しい神経細胞の生成促進</li>
+                                <li><strong>概日リズム：</strong>睡眠・覚醒・ホルモン調節</li>
+                                <li><strong>ストレス応答：</strong>HPA軸・コルチゾール・適応</li>
+                                <li><strong>運動効果：</strong>BDNF・血流・認知機能向上</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用技術 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>使用技術</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>AI・データ処理</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">OpenRouter API</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQLite</span>
+                                <span class="skill-tag">NumPy/Pandas</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>Web開発</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Flask</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Chart.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実装例 -->
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>実装例：集中力低下の場合</h4>
+                    <p><strong>入力：</strong>「最近集中が続かない、すぐに気が散る、やる気も出ない」</p>
+                    <p><strong>AI分析：</strong>前頭前皮質の注意制御機能低下 + ドーパミン系の動機づけ異常を推定</p>
+                    <p><strong>生成されるアドバイス：</strong></p>
+                    <ul class="feature-list">
+                        <li><strong>即効性：</strong>ポモドーロテクニック（注意の持続限界を考慮した25分集中）</li>
+                        <li><strong>習慣化：</strong>週3回の有酸素運動（BDNF増加による前頭葉機能改善）</li>
+                        <li><strong>根拠説明：</strong>「注意制御は前頭前皮質の機能で、運動により神経可塑性が向上します」</li>
+                    </ul>
+                </div>
+
+                <!-- 成果と学び -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>成果と学び</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>プロジェクトの成果</h3>
+                            <ul class="feature-list">
+                                <li><strong>説明可能性の実現：</strong>AI判断の根拠を科学的に説明</li>
+                                <li><strong>パーソナライゼーション：</strong>個人差を考慮した最適化</li>
+                                <li><strong>実践性の向上：</strong>実行可能で効果的なアドバイス</li>
+                                <li><strong>継続利用設計：</strong>習慣化を促す仕組みの構築</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3>技術的・学術的な学び</h3>
+                            <ul class="feature-list">
+                                <li><strong>学際的アプローチ：</strong>脳科学とAI技術の融合</li>
+                                <li><strong>プロンプト工学：</strong>専門知識をAIに組み込む手法</li>
+                                <li><strong>データモデリング：</strong>複雑な人間状態の構造化</li>
+                                <li><strong>ユーザビリティ：</strong>科学的精密さと使いやすさの両立</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 今後の展望 -->
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>今後の展望・拡張可能性</h4>
+                    <p>このアプリは脳神経科学とAI技術を結びつけた実証的研究の第一歩です。今後は生理学的データ（心拍変動、睡眠パターン等）の統合、より精密な個人モデルの構築、臨床心理学・精神医学領域との連携を視野に入れています。<strong>「なぜそのアドバイスなのか」を科学的に説明できるAIシステム</strong>の可能性を追求し続けたいと考えています。</p>
+                </div>
+
+                <!-- 次のプロジェクト -->
+                <div style="margin-top: var(--space-8); text-align: center;">
+                    <a href="tiktok-project.html" class="button button-primary">
+                        次のプロジェクト: TikTok変換ツール
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer style="background: var(--bg-elev); padding: var(--space-6) 0; text-align: center; border-top: 1px solid var(--border);">
+        <div class="container">
+            <p class="text-caption">
+                © 2025 鈴木皆人（Minato Suzuki）. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

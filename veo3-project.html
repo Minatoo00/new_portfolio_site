@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veo3向け動画そっくり生成ツール - プロジェクト詳細</title>
+    <meta name="description" content="任意の入力動画から、ほぼ同等の映像を再生成できるVeo3用JSONプロンプトを自動作成するWebアプリケーション">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand" aria-label="ホームに戻る">鈴木皆人</a>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">ホーム</a></li>
+                <li role="none"><a href="index.html#projects" class="nav-link active" role="menuitem">プロジェクト</a></li>
+                <li role="none"><a href="index.html#about" class="nav-link" role="menuitem">プロフィール</a></li>
+                <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">コンタクト</a></li>
+            </ul>
+            
+            <div class="contact-dropdown">
+                <button class="button button-primary tappable contact-trigger" aria-label="お問い合わせ方法を選択" aria-expanded="false">
+                    お問い合わせ
+                    <span class="dropdown-icon">▾</span>
+                </button>
+                <div class="contact-options" role="menu" aria-hidden="true">
+                    <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" 
+                       class="contact-option" role="menuitem">
+                        <span class="contact-icon">✉️</span>
+                        メールアプリで開く
+                    </a>
+                    <button class="contact-option copy-email-btn" role="menuitem" data-email="minato2ban@icloud.com">
+                        <span class="contact-icon">📋</span>
+                        メールアドレスをコピー
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- プロジェクトヒーロー -->
+        <section class="project-hero section">
+            <div class="container">
+                <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
+                
+                <h1>Veo3向け動画そっくり生成ツール</h1>
+                <p class="hero-subtitle">AI動画解析 × プロンプト自動生成システム</p>
+                
+                <p class="hero-description">
+                    任意の入力動画から、ほぼ同等の映像を再生成できるVeo3用JSONプロンプトを自動作成するWebアプリケーション。動画解析から構造化まで、AI技術を多段階で活用した安定再現性重視のシステムです。
+                </p>
+            </div>
+        </section>
+
+        <!-- プロジェクト詳細 -->
+        <section class="section">
+            <div class="container">
+                <!-- プロジェクトメタ情報 -->
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト期間</div>
+                        <div class="project-meta-value">2024年後半</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">役割</div>
+                        <div class="project-meta-value">フルスタック開発・AI実装</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト種別</div>
+                        <div class="project-meta-value">個人開発・PoC</div>
+                    </div>
+                </div>
+
+                <!-- 課題と解決アプローチ -->
+                <div class="grid grid-2" style="margin-top: var(--space-8);">
+                    <div>
+                        <h2>解決したい課題</h2>
+                        <p>動画生成AI「Veo3」で既存動画と類似した映像を生成したいが、手動でプロンプトを作成するのは非常に時間がかかり、結果の再現性も安定しない。特に以下が課題でした：</p>
+                        
+                        <ul class="feature-list">
+                            <li>動画の構成要素（被写体、背景、カメラワーク等）の詳細な分析が困難</li>
+                            <li>Veo3の仕様に最適化されたプロンプト構造の把握</li>
+                            <li>時系列に沿ったショット分割とタイムライン管理</li>
+                            <li>否定プロンプトや品質指定の最適化</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2>アプローチと技術選択</h2>
+                        <p>問題を段階的に解決するため、3つのフェーズに分けたAI活用型システムを設計：</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Phase 1: 動画解析</h4>
+                            <p>Vertex AI（Gemini 2.5-flash）による高精度な動画内容分析</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>Phase 2: 構造化</h4>
+                            <p>解析結果をVeo3向けの中間表現に変換</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>Phase 3: 最終整形</h4>
+                            <p>OpenRouter経由LLMでVeo3完全対応JSONに最適化</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技術実装詳細 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>主要機能と技術実装</h2>
+                    
+                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
+                        <div class="card">
+                            <h3>動画アップロード & 解析</h3>
+                            <p>ユーザーが動画をアップロードすると、Vertex AI（Gemini 2.5-flash）が以下の要素を自動抽出：</p>
+                            <ul class="feature-list">
+                                <li>シーン分割とタイムライン</li>
+                                <li>被写体の特定と動き</li>
+                                <li>カメラワーク（パン、ズーム等）</li>
+                                <li>背景・環境の詳細</li>
+                                <li>照明・色調・スタイル</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Veo3仕様最適化</h3>
+                            <p>解析結果をVeo3の入力仕様に合わせて構造化：</p>
+                            <ul class="feature-list">
+                                <li>ショット単位の時間配分計算</li>
+                                <li>カメラ指示の標準化</li>
+                                <li>品質パラメータの自動設定</li>
+                                <li>否定プロンプトの生成</li>
+                                <li>スタイル一貫性の保証</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>JSON出力 & 検証</h3>
+                            <p>OpenRouter経由のLLMで最終整形し、実用可能なプロンプトを生成：</p>
+                            <ul class="feature-list">
+                                <li>Veo3 APIフォーマットに完全対応</li>
+                                <li>プロンプト長の最適化</li>
+                                <li>重複要素の除去</li>
+                                <li>精度と再現性のバランス調整</li>
+                                <li>エラー処理と品質チェック</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用技術 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>使用技術</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>AI・クラウド</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Google Vertex AI</span>
+                                <span class="skill-tag">Gemini 2.5-flash</span>
+                                <span class="skill-tag">OpenRouter API</span>
+                                <span class="skill-tag">Google Cloud Storage</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>フロントエンド・バックエンド</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Flask/FastAPI</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 成果と学び -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>成果と学び</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>プロジェクトの成果</h3>
+                            <ul class="feature-list">
+                                <li><strong>処理時間の大幅短縮：</strong>手動作業2時間 → 自動化で5分以内</li>
+                                <li><strong>再現精度の向上：</strong>構造化アプローチで一貫した品質</li>
+                                <li><strong>Veo3仕様への完全対応：</strong>プロンプトエラー率ほぼゼロ</li>
+                                <li><strong>拡張可能性：</strong>他動画生成AIへの応用基盤</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3>技術的な学び</h3>
+                            <ul class="feature-list">
+                                <li><strong>多段階AI活用：</strong>役割分担による精度向上手法</li>
+                                <li><strong>動画解析API：</strong>Vertex AIの効果的な使用方法</li>
+                                <li><strong>プロンプト工学：</strong>LLM最適化とパラメータ調整</li>
+                                <li><strong>APIフォールバック：</strong>安定性重視の設計原則</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実装のポイント -->
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>実装で重視したポイント</h4>
+                    <p>このプロジェクトでは、単純な動画→テキスト変換ではなく、<strong>「安定再現性」</strong>を最優先に設計しました。各AIモデルの特性を理解し、解析→構造化→整形の3段階で責任を分離することで、最終的なプロンプトの品質と一貫性を担保。また、Veo3の仕様変更にも対応できる柔軟な設計を心がけ、将来の拡張性を確保しています。</p>
+                </div>
+
+                <!-- 次のプロジェクト -->
+                <div style="margin-top: var(--space-8); text-align: center;">
+                    <a href="neuro-project.html" class="button button-primary">
+                        次のプロジェクト: 脳神経科学アプリ
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer style="background: var(--bg-elev); padding: var(--space-6) 0; text-align: center; border-top: 1px solid var(--border);">
+        <div class="container">
+            <p class="text-caption">
+                © 2025 鈴木皆人（Minato Suzuki）. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

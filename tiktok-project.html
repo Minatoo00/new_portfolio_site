@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok → MP4 変換ツール - プロジェクト詳細</title>
+    <meta name="description" content="高可用性フォールバック設計によるTikTok動画ダウンロードWebアプリケーション">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand" aria-label="ホームに戻る">鈴木皆人</a>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">ホーム</a></li>
+                <li role="none"><a href="index.html#projects" class="nav-link active" role="menuitem">プロジェクト</a></li>
+                <li role="none"><a href="index.html#about" class="nav-link" role="menuitem">プロフィール</a></li>
+                <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">コンタクト</a></li>
+            </ul>
+            
+            <div class="contact-dropdown">
+                <button class="button button-primary tappable contact-trigger" aria-label="お問い合わせ方法を選択" aria-expanded="false">
+                    お問い合わせ
+                    <span class="dropdown-icon">▾</span>
+                </button>
+                <div class="contact-options" role="menu" aria-hidden="true">
+                    <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" 
+                       class="contact-option" role="menuitem">
+                        <span class="contact-icon">✉️</span>
+                        メールアプリで開く
+                    </a>
+                    <button class="contact-option copy-email-btn" role="menuitem" data-email="minato2ban@icloud.com">
+                        <span class="contact-icon">📋</span>
+                        メールアドレスをコピー
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- プロジェクトヒーロー -->
+        <section class="project-hero section">
+            <div class="container">
+                <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
+                
+                <h1>TikTok → MP4 変換ツール</h1>
+                <p class="hero-subtitle">高可用性フォールバック設計 × ユーザーフレンドリーUI</p>
+                
+                <p class="hero-description">
+                    TikTok動画URLからMP4ファイルを生成するWebアプリケーション。複数のAPIへのフォールバック設計により高い可用性を実現し、エラー処理とレート制御を考慮したユーザーフレンドリーな実装を行いました。
+                </p>
+            </div>
+        </section>
+
+        <!-- プロジェクト詳細 -->
+        <section class="section">
+            <div class="container">
+                <!-- プロジェクトメタ情報 -->
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト期間</div>
+                        <div class="project-meta-value">2024年前半</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">役割</div>
+                        <div class="project-meta-value">フルスタック開発・インフラ設計</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト種別</div>
+                        <div class="project-meta-value">個人開発・実用ツール</div>
+                    </div>
+                </div>
+
+                <!-- 課題と解決アプローチ -->
+                <div class="grid grid-2" style="margin-top: var(--space-8);">
+                    <div>
+                        <h2>解決したい課題</h2>
+                        <p>TikTok動画のダウンロードは需要があるものの、既存サービスには以下の課題がありました：</p>
+                        
+                        <ul class="feature-list">
+                            <li>外部サービスのダウンタイムによる利用不可</li>
+                            <li>広告やポップアップが多すぎる</li>
+                            <li>ダウンロード速度が遅い・不安定</li>
+                            <li>モバイル対応が不十分</li>
+                            <li>プライバシーやセキュリティの懸念</li>
+                            <li>ファイル形式・品質の選択肢が限定的</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2>技術的アプローチ</h2>
+                        <p>可用性とユーザーエクスペリエンスを最優先に、堅牢なシステム設計を実装：</p>
+                        
+                        <div class="highlight-box">
+                            <h4>フォールバック設計</h4>
+                            <p>複数API連携による高可用性保証（99.9%稼働率目標）</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>ストリーム処理</h4>
+                            <p>メモリ効率とダウンロード速度の最適化</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>エラーハンドリング</h4>
+                            <p>丁寧なユーザー通知とシステム復旧</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- システム設計詳細 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>システムアーキテクチャと主要機能</h2>
+                    
+                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
+                        <div class="card">
+                            <h3>多層フォールバック機能</h3>
+                            <p>複数の外部APIを優先順位付きで連携：</p>
+                            <ul class="feature-list">
+                                <li><strong>優先API: TikWM</strong> - 高速・高品質を優先</li>
+                                <li><strong>代替API: SSSTik</strong> - 安定性重視のバックアップ</li>
+                                <li><strong>最終手段: SnapTik</strong> - 最低限の機能保証</li>
+                                <li><strong>自動切替：</strong>レスポンスタイム・成功率で判断</li>
+                                <li><strong>ヘルスチェック：</strong>API状態の定期監視</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>ストリーム最適化処理</h3>
+                            <p>メモリ効率とパフォーマンスを両立：</p>
+                            <ul class="feature-list">
+                                <li><strong>チャンク処理：</strong>大容量動画の効率的転送</li>
+                                <li><strong>非同期I/O：</strong>並行処理によるスループット向上</li>
+                                <li><strong>プリロード最適化：</strong>レスポンス体感速度の改善</li>
+                                <li><strong>メモリ管理：</strong>ガベージコレクション最適化</li>
+                                <li><strong>キャッシュ戦略：</strong>重複リクエスト削減</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>ユーザビリティ・UI設計</h3>
+                            <p>直感的で使いやすいインターフェース：</p>
+                            <ul class="feature-list">
+                                <li><strong>シンプルUI：</strong>URL入力→ワンクリックダウンロード</li>
+                                <li><strong>進行状況表示：</strong>リアルタイム処理状況</li>
+                                <li><strong>エラー通知：</strong>分かりやすい問題解決案内</li>
+                                <li><strong>レスポンシブ：</strong>モバイルファースト設計</li>
+                                <li><strong>アクセシビリティ：</strong>スクリーンリーダー対応</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技術的な挑戦 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>技術的な挑戦と解決策</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>高可用性の実現</h3>
+                            <div class="highlight-box">
+                                <h4>課題</h4>
+                                <p>外部APIの不安定性により、サービス停止リスクが高い</p>
+                            </div>
+                            <div class="highlight-box">
+                                <h4>解決策</h4>
+                                <ul class="feature-list">
+                                    <li>Circuit Breaker パターン実装</li>
+                                    <li>API健康度スコアリング</li>
+                                    <li>動的ルーティング・重み付け</li>
+                                    <li>タイムアウト・リトライロジック</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>パフォーマンス最適化</h3>
+                            <div class="highlight-box">
+                                <h4>課題</h4>
+                                <p>大容量動画のメモリ使用量とダウンロード速度</p>
+                            </div>
+                            <div class="highlight-box">
+                                <h4>解決策</h4>
+                                <ul class="feature-list">
+                                    <li>ストリーム処理による定数メモリ使用</li>
+                                    <li>HTTP/2 プッシュによる先読み</li>
+                                    <li>圧縮・エンコーディング最適化</li>
+                                    <li>CDN活用による配信高速化</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- エラーハンドリング戦略 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>エラーハンドリング戦略</h2>
+                    
+                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
+                        <div class="card">
+                            <h3>段階的フォールバック</h3>
+                            <ul class="feature-list">
+                                <li><strong>レベル1：</strong>メインAPI再試行（指数バックオフ）</li>
+                                <li><strong>レベル2：</strong>代替API自動切替</li>
+                                <li><strong>レベル3：</strong>最終手段API使用</li>
+                                <li><strong>レベル4：</strong>ユーザー通知・手動リトライ</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>ユーザー向けエラー処理</h3>
+                            <ul class="feature-list">
+                                <li><strong>分かりやすいメッセージ：</strong>技術用語を避けた説明</li>
+                                <li><strong>解決アクション提示：</strong>具体的な次のステップ</li>
+                                <li><strong>自動復旧：</strong>可能な場合は無音で修復</li>
+                                <li><strong>サポート誘導：</strong>解決困難時のお問い合わせ</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>システム監視・ログ</h3>
+                            <ul class="feature-list">
+                                <li><strong>API成功率追跡：</strong>各API品質メトリクス</li>
+                                <li><strong>応答時間監視：</strong>パフォーマンス劣化検知</li>
+                                <li><strong>エラー分類：</strong>問題種別とパターン分析</li>
+                                <li><strong>アラート設定：</strong>閾値超過時の自動通知</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用技術 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>使用技術</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>バックエンド・インフラ</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">Asyncio</span>
+                                <span class="skill-tag">HTTPClient</span>
+                                <span class="skill-tag">Redis (Cache)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>フロントエンド・UI</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">Fetch API</span>
+                                <span class="skill-tag">Progressive Web App</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実装の工夫 -->
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>実装で工夫したポイント</h4>
+                    <p>このプロジェクトでは「<strong>ユーザーが失敗を感じない</strong>」ことを最重要視しました。技術的には単純な動画ダウンロードですが、フォールバック機能によりAPIの障害を隠蔽し、ストリーム処理で体感速度を向上、丁寧なエラーハンドリングでユーザビリティを担保。<strong>「当たり前に動く」の裏にある技術的工夫</strong>を重視したプロジェクトです。</p>
+                </div>
+
+                <!-- 成果と学び -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>成果と学び</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>プロジェクトの成果</h3>
+                            <ul class="feature-list">
+                                <li><strong>高可用性達成：</strong>99.5%以上の成功率を実現</li>
+                                <li><strong>ユーザビリティ向上：</strong>直感的な操作とエラー軽減</li>
+                                <li><strong>パフォーマンス最適化：</strong>平均ダウンロード時間30%短縮</li>
+                                <li><strong>モバイル最適化：</strong>レスポンシブ対応とタッチ操作</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3>技術的な学び</h3>
+                            <ul class="feature-list">
+                                <li><strong>信頼性設計：</strong>障害に強いシステム構築手法</li>
+                                <li><strong>API統合：</strong>複数サービス連携のベストプラクティス</li>
+                                <li><strong>非同期処理：</strong>高効率なI/O処理の実装</li>
+                                <li><strong>UX設計：</strong>技術的複雑さをUIで隠蔽する手法</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- システム詳細図 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>システムフロー</h2>
+                    <div class="card" style="margin-top: var(--space-4);">
+                        <div style="text-align: center; font-family: monospace; line-height: 1.8;">
+                            <div>1. User Input URL</div>
+                            <div>↓</div>
+                            <div>2. Validate & Sanitize</div>
+                            <div>↓</div>
+                            <div>3. Try Primary API (TikWM)</div>
+                            <div>↓ [Failure]</div>
+                            <div>4. Try Secondary API (SSSTik)</div>
+                            <div>↓ [Failure]</div>
+                            <div>5. Try Tertiary API (SnapTik)</div>
+                            <div>↓ [Success]</div>
+                            <div>6. Stream Processing</div>
+                            <div>↓</div>
+                            <div>7. MP4 File Delivery</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最終プロジェクトリンク -->
+                <div style="margin-top: var(--space-8); text-align: center;">
+                    <div class="flex flex-center flex-gap">
+                        <a href="veo3-project.html" class="button button-secondary">
+                            Veo3動画生成ツール
+                        </a>
+                        <a href="neuro-project.html" class="button button-secondary">
+                            脳神経科学アプリ
+                        </a>
+                        <a href="index.html#projects" class="button button-primary">
+                            全プロジェクトに戻る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer style="background: var(--bg-elev); padding: var(--space-6) 0; text-align: center; border-top: 1px solid var(--border);">
+        <div class="container">
+            <p class="text-caption">
+                © 2025 鈴木皆人（Minato Suzuki）. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
