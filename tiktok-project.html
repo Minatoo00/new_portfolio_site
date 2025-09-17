@@ -47,10 +47,10 @@
                 <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
                 
                 <h1>TikTok → MP4 変換ツール</h1>
-                <p class="hero-subtitle">高可用性フォールバック設計 × ユーザーフレンドリーUI</p>
+                <p class="hero-subtitle">順次フォールバックとシンプルなUI</p>
                 
                 <p class="hero-description">
-                    TikTok動画URLからMP4ファイルを生成するWebアプリケーション。複数のAPIへのフォールバック設計により高い可用性を実現し、エラー処理とレート制御を考慮したユーザーフレンドリーな実装を行いました。
+                    TikTok動画URLからMP4を保存するシンプルなWebアプリです。無料のAPIを順番に試し、取得できた動画URLをサーバー側でストリーム保存してからダウンロードリンクを返します。
                 </p>
             </div>
         </section>
@@ -94,21 +94,21 @@
 
                     <div>
                         <h2>技術的アプローチ</h2>
-                        <p>可用性とユーザーエクスペリエンスを最優先に、堅牢なシステム設計を実装：</p>
+                        <p>外部の無料APIを順番に呼び出し、最初に取得できた動画URLを使う素直な実装です：</p>
                         
                         <div class="highlight-box">
-                            <h4>フォールバック設計</h4>
-                            <p>複数API連携による高可用性保証（99.9%稼働率目標）</p>
+                            <h4>順次フォールバック</h4>
+                            <p>TikWM → SSSTik → SnapTik → TiklyDown の順で試行</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>ストリーム処理</h4>
-                            <p>メモリ効率とダウンロード速度の最適化</p>
+                            <h4>ストリーム保存</h4>
+                            <p>取得した動画URLをサーバーでストリームしてmp4に保存</p>
                         </div>
                         
                         <div class="highlight-box">
                             <h4>エラーハンドリング</h4>
-                            <p>丁寧なユーザー通知とシステム復旧</p>
+                            <p>失敗時は次のAPIへ切替。最終的に失敗ならメッセージを返します</p>
                         </div>
                     </div>
                 </div>
@@ -120,77 +120,67 @@
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
                             <h3>多層フォールバック機能</h3>
-                            <p>複数の外部APIを優先順位付きで連携：</p>
+                            <p>外部APIを固定の順序で呼び出します：</p>
                             <ul class="feature-list">
-                                <li><strong>優先API: TikWM</strong> - 高速・高品質を優先</li>
-                                <li><strong>代替API: SSSTik</strong> - 安定性重視のバックアップ</li>
-                                <li><strong>最終手段: SnapTik</strong> - 最低限の機能保証</li>
-                                <li><strong>自動切替：</strong>レスポンスタイム・成功率で判断</li>
-                                <li><strong>ヘルスチェック：</strong>API状態の定期監視</li>
+                                <li><strong>順序:</strong> TikWM → SSSTik → SnapTik → TiklyDown</li>
+                                <li><strong>条件:</strong> 先に成功したAPIの動画URLを採用</li>
+                                <li><strong>タイムアウト:</strong> 各API 15秒</li>
                             </ul>
                         </div>
 
                         <div class="card">
                             <h3>ストリーム最適化処理</h3>
-                            <p>メモリ効率とパフォーマンスを両立：</p>
+                            <p>Node.jsのストリームでファイルを保存：</p>
                             <ul class="feature-list">
-                                <li><strong>チャンク処理：</strong>大容量動画の効率的転送</li>
-                                <li><strong>非同期I/O：</strong>並行処理によるスループット向上</li>
-                                <li><strong>プリロード最適化：</strong>レスポンス体感速度の改善</li>
-                                <li><strong>メモリ管理：</strong>ガベージコレクション最適化</li>
-                                <li><strong>キャッシュ戦略：</strong>重複リクエスト削減</li>
+                                <li><strong>HTTP GET (stream):</strong> axiosのresponseType=stream</li>
+                                <li><strong>保存先:</strong> downloads/ ディレクトリ</li>
+                                <li><strong>ファイル名:</strong> タイトル+タイムスタンプ+短いUUID</li>
                             </ul>
                         </div>
 
                         <div class="card">
                             <h3>ユーザビリティ・UI設計</h3>
-                            <p>直感的で使いやすいインターフェース：</p>
+                            <p>必要最小限のUI：</p>
                             <ul class="feature-list">
-                                <li><strong>シンプルUI：</strong>URL入力→ワンクリックダウンロード</li>
-                                <li><strong>進行状況表示：</strong>リアルタイム処理状況</li>
-                                <li><strong>エラー通知：</strong>分かりやすい問題解決案内</li>
-                                <li><strong>レスポンシブ：</strong>モバイルファースト設計</li>
-                                <li><strong>アクセシビリティ：</strong>スクリーンリーダー対応</li>
+                                <li><strong>URL入力 → 変換開始</strong> の2アクション</li>
+                                <li><strong>結果表示:</strong> タイトル/作者/画質/ファイル名</li>
+                                <li><strong>ダウンロードリンク:</strong> /downloads/{file} を返却</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- 技術的な挑戦 -->
+                <!-- 小さな工夫と学び -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>技術的な挑戦と解決策</h2>
+                    <h2>小さな工夫と学び</h2>
                     
                     <div class="grid grid-2">
                         <div>
-                            <h3>高可用性の実現</h3>
+                            <h3>外部APIの失敗に備える</h3>
                             <div class="highlight-box">
                                 <h4>課題</h4>
-                                <p>外部APIの不安定性により、サービス停止リスクが高い</p>
+                                <p>外部サービスが失敗することがある</p>
                             </div>
                             <div class="highlight-box">
-                                <h4>解決策</h4>
+                                <h4>対処</h4>
                                 <ul class="feature-list">
-                                    <li>Circuit Breaker パターン実装</li>
-                                    <li>API健康度スコアリング</li>
-                                    <li>動的ルーティング・重み付け</li>
-                                    <li>タイムアウト・リトライロジック</li>
+                                    <li>1つ失敗したら次のAPIを試すだけのシンプル設計</li>
+                                    <li>各リクエストにタイムアウトを設定</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div>
-                            <h3>パフォーマンス最適化</h3>
+                            <h3>保存と命名</h3>
                             <div class="highlight-box">
                                 <h4>課題</h4>
-                                <p>大容量動画のメモリ使用量とダウンロード速度</p>
+                                <p>大きな動画ファイルを安全に保存したい</p>
                             </div>
                             <div class="highlight-box">
-                                <h4>解決策</h4>
+                                <h4>対処</h4>
                                 <ul class="feature-list">
-                                    <li>ストリーム処理による定数メモリ使用</li>
-                                    <li>HTTP/2 プッシュによる先読み</li>
-                                    <li>圧縮・エンコーディング最適化</li>
-                                    <li>CDN活用による配信高速化</li>
+                                    <li>Node.jsのストリームAPIで逐次書き込み</li>
+                                    <li>タイトルを整形し、タイムスタンプ+短いUUIDで一意化</li>
                                 </ul>
                             </div>
                         </div>
@@ -199,36 +189,22 @@
 
                 <!-- エラーハンドリング戦略 -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>エラーハンドリング戦略</h2>
+                    <h2>エラーハンドリング</h2>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
                             <h3>段階的フォールバック</h3>
                             <ul class="feature-list">
-                                <li><strong>レベル1：</strong>メインAPI再試行（指数バックオフ）</li>
-                                <li><strong>レベル2：</strong>代替API自動切替</li>
-                                <li><strong>レベル3：</strong>最終手段API使用</li>
-                                <li><strong>レベル4：</strong>ユーザー通知・手動リトライ</li>
+                                <li>1つのAPIが失敗したら、次のAPIを試す</li>
+                                <li>すべて失敗したらエラーメッセージを返す</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>ユーザー向けエラー処理</h3>
+                            <h3>ユーザー通知</h3>
                             <ul class="feature-list">
-                                <li><strong>分かりやすいメッセージ：</strong>技術用語を避けた説明</li>
-                                <li><strong>解決アクション提示：</strong>具体的な次のステップ</li>
-                                <li><strong>自動復旧：</strong>可能な場合は無音で修復</li>
-                                <li><strong>サポート誘導：</strong>解決困難時のお問い合わせ</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h3>システム監視・ログ</h3>
-                            <ul class="feature-list">
-                                <li><strong>API成功率追跡：</strong>各API品質メトリクス</li>
-                                <li><strong>応答時間監視：</strong>パフォーマンス劣化検知</li>
-                                <li><strong>エラー分類：</strong>問題種別とパターン分析</li>
-                                <li><strong>アラート設定：</strong>閾値超過時の自動通知</li>
+                                <li>失敗理由（タイムアウトなど）を簡潔に表示</li>
+                                <li>再試行ボタンで最初からやり直し</li>
                             </ul>
                         </div>
                     </div>
@@ -240,13 +216,13 @@
                     
                     <div class="grid grid-2">
                         <div>
-                            <h3>バックエンド・インフラ</h3>
+                            <h3>バックエンド</h3>
                             <div class="skill-tags">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">FastAPI</span>
-                                <span class="skill-tag">Asyncio</span>
-                                <span class="skill-tag">HTTPClient</span>
-                                <span class="skill-tag">Redis (Cache)</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Express</span>
+                                <span class="skill-tag">axios</span>
+                                <span class="skill-tag">uuid</span>
+                                <span class="skill-tag">CORS</span>
                             </div>
                         </div>
 
@@ -256,7 +232,6 @@
                                 <span class="skill-tag">JavaScript</span>
                                 <span class="skill-tag">HTML/CSS</span>
                                 <span class="skill-tag">Fetch API</span>
-                                <span class="skill-tag">Progressive Web App</span>
                             </div>
                         </div>
                     </div>
@@ -276,20 +251,18 @@
                         <div>
                             <h3>プロジェクトの成果</h3>
                             <ul class="feature-list">
-                                <li><strong>高可用性達成：</strong>99.5%以上の成功率を実現</li>
-                                <li><strong>ユーザビリティ向上：</strong>直感的な操作とエラー軽減</li>
-                                <li><strong>パフォーマンス最適化：</strong>平均ダウンロード時間30%短縮</li>
-                                <li><strong>モバイル最適化：</strong>レスポンシブ対応とタッチ操作</li>
+                                <li>URL入力からMP4保存までを最小構成で実装</li>
+                                <li>無料APIの順次フォールバックで成功率を素直に担保</li>
+                                <li>タイトル整形と一意なファイル名生成を標準化</li>
                             </ul>
                         </div>
 
                         <div>
                             <h3>技術的な学び</h3>
                             <ul class="feature-list">
-                                <li><strong>信頼性設計：</strong>障害に強いシステム構築手法</li>
-                                <li><strong>API統合：</strong>複数サービス連携のベストプラクティス</li>
-                                <li><strong>非同期処理：</strong>高効率なI/O処理の実装</li>
-                                <li><strong>UX設計：</strong>技術的複雑さをUIで隠蔽する手法</li>
+                                <li>外部APIの失敗を前提にした単純なフォールバックの有効性</li>
+                                <li>Node.jsストリームでの安全なファイル保存</li>
+                                <li>タイムアウトと例外処理の基本設計</li>
                             </ul>
                         </div>
                     </div>
@@ -302,17 +275,19 @@
                         <div style="text-align: center; font-family: monospace; line-height: 1.8;">
                             <div>1. User Input URL</div>
                             <div>↓</div>
-                            <div>2. Validate & Sanitize</div>
+                            <div>2. Validate (tiktok.com を含むか確認)</div>
                             <div>↓</div>
-                            <div>3. Try Primary API (TikWM)</div>
-                            <div>↓ [Failure]</div>
-                            <div>4. Try Secondary API (SSSTik)</div>
-                            <div>↓ [Failure]</div>
-                            <div>5. Try Tertiary API (SnapTik)</div>
-                            <div>↓ [Success]</div>
-                            <div>6. Stream Processing</div>
+                            <div>3. Try TikWM</div>
+                            <div>↓ 失敗なら</div>
+                            <div>4. Try SSSTik</div>
+                            <div>↓ 失敗なら</div>
+                            <div>5. Try SnapTik</div>
+                            <div>↓ 失敗なら</div>
+                            <div>6. Try TiklyDown</div>
+                            <div>↓ 成功</div>
+                            <div>7. axios(stream) → downloads/{file}.mp4 に保存</div>
                             <div>↓</div>
-                            <div>7. MP4 File Delivery</div>
+                            <div>8. /downloads/{file} を返す</div>
                         </div>
                     </div>
                 </div>
