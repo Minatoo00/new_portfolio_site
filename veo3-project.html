@@ -95,17 +95,17 @@
                         
                         <div class="highlight-box">
                             <h4>Step 1: 動画の内容理解</h4>
-                            <p>アップロードされた動画をGoogle Cloud Storageに保存し、Vertex AI（Gemini 2.5-Flash）が「この動画を可能な限り詳細まで説明して」という指示で動画内容を文章化します。</p>
+                            <p>動画をGCSに保存し、Vertex AI（Gemini 2.5-Flash）で動画内容を詳細に文章化</p>
                         </div>
                         
                         <div class="highlight-box">
                             <h4>Step 2: プロンプト設計書の適用</h4>
-                            <p>Geminiが生成した説明文を、Veo3の仕様に合わせた詳細なテンプレートに組み込みます。このテンプレートには、カメラ設定、タイムライン、音響指定などの技術的な制約が事前定義されています。</p>
+                            <p>Geminiの説明文をVeo3仕様のテンプレートに組み込み、カメラ設定や技術制約を統一</p>
                         </div>
                         
                         <div class="highlight-box">
                             <h4>Step 3: JSON構造化</h4>
-                            <p>OpenRouter APIを使用して、テンプレート化された指示をVeo3互換のJSON形式に変換します。response_format=json_objectで確実にJSON出力を保証し、必須フィールドの検証も実行します。</p>
+                            <p>OpenRouter APIでVeo3互換のJSON形式に変換し、必須フィールドを検証して完成</p>
                         </div>
                     </div>
                 </div>
