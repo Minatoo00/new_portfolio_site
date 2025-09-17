@@ -283,26 +283,58 @@
                     </div>
                 </div>
 
-                <!-- システム詳細図 -->
+                <!-- システムフロー -->
                 <div style="margin-top: var(--space-8);">
                     <h2>システムフロー</h2>
-                    <div class="card" style="margin-top: var(--space-4);">
-                        <div style="text-align: center; font-family: monospace; line-height: 1.8;">
-                            <div>1. User Input URL</div>
-                            <div>↓</div>
-                            <div>2. Validate (tiktok.com を含むか確認)</div>
-                            <div>↓</div>
-                            <div>3. Try TikWM</div>
-                            <div>↓ 失敗なら</div>
-                            <div>4. Try SSSTik</div>
-                            <div>↓ 失敗なら</div>
-                            <div>5. Try SnapTik</div>
-                            <div>↓ 失敗なら</div>
-                            <div>6. Try TiklyDown</div>
-                            <div>↓ 成功</div>
-                            <div>7. axios(stream) → downloads/{file}.mp4 に保存</div>
-                            <div>↓</div>
-                            <div>8. /downloads/{file} を返す</div>
+                    <p class="text-sub">3層のフォールバック機能による堅牢な処理フローを図解します。</p>
+                    
+                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
+                        <div class="card">
+                            <h3>🔗 URL入力・検証</h3>
+                            <ul class="feature-list">
+                                <li>TikTok URLの形式チェック</li>
+                                <li>リアルタイムバリデーション</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>🌐 Layer 1: 外部API群</h3>
+                            <ul class="feature-list">
+                                <li>TikWM → SSSTik → SnapTik → TiklyDown</li>
+                                <li>各API 15秒タイムアウト、HD画質優先</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>🔍 Layer 2: スクレイピング</h3>
+                            <ul class="feature-list">
+                                <li>Puppeteer + Chrome起動</li>
+                                <li>TikTokページから動画URL抽出</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>🛠️ Layer 3: yt-dlp</h3>
+                            <ul class="feature-list">
+                                <li>最終フォールバック実行</li>
+                                <li>FFmpeg連携でHLS結合</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>💾 ストリーム保存</h3>
+                            <ul class="feature-list">
+                                <li>Node.jsストリームで効率的保存</li>
+                                <li>自動ファイル名生成（UUID付き）</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>📤 結果返却</h3>
+                            <ul class="feature-list">
+                                <li>ダウンロードリンク生成</li>
+                                <li>動画情報（タイトル、画質）表示</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
