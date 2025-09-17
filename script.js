@@ -75,19 +75,29 @@
 
     // ナビゲーションリンクのクリックハンドラー
     function handleNavLinkClick(event) {
-        event.preventDefault();
-        const target = event.target.getAttribute('href');
-        
-        // フォーカス管理
-        event.target.blur();
-        
-        // スムーススクロール実行
-        smoothScrollToTarget(target);
-        
-        // 履歴更新（ただしスクロールはしない）
-        if (history.pushState) {
-            history.pushState(null, null, target);
+        const link = event.currentTarget;
+        if (!link || !link.getAttribute) return;
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        const isInPageHash = href.startsWith('#');
+
+        // 同一ページ内のハッシュリンクのみデフォルト抑止してスムーススクロール
+        if (isInPageHash) {
+            event.preventDefault();
+
+            // フォーカス管理
+            link.blur();
+
+            // スムーススクロール実行
+            smoothScrollToTarget(href);
+
+            // 履歴更新（スクロールはしない）
+            if (history.pushState) {
+                history.pushState(null, '', href);
+            }
         }
+        // それ以外（index.html#... や 他ページ）はブラウザに任せて遷移
     }
 
     // キーボードナビゲーション対応
