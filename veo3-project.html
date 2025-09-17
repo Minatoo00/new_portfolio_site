@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veo3向け動画そっくり生成ツール - プロジェクト詳細</title>
-    <meta name="description" content="任意の入力動画から、ほぼ同等の映像を再生成できるVeo3用JSONプロンプトを自動作成するWebアプリケーション">
+    <title>Veo3用 プロンプト生成ツール - プロジェクト詳細</title>
+    <meta name="description" content="動画を解析してVeo3用のJSONプロンプトを生成するWebアプリケーション">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -46,11 +46,11 @@
             <div class="container">
                 <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
                 
-                <h1>Veo3向け動画そっくり生成ツール</h1>
+                <h1>Veo3用 プロンプト生成ツール</h1>
                 <p class="hero-subtitle">AI動画解析 × プロンプト自動生成システム</p>
                 
                 <p class="hero-description">
-                    任意の入力動画から、ほぼ同等の映像を再生成できるVeo3用JSONプロンプトを自動作成するWebアプリケーション。動画解析から構造化まで、AI技術を多段階で活用した安定再現性重視のシステムです。
+                    動画をアップロードすると、Vertex AI（Gemini）が内容を説明テキストにし、テンプレートと組み合わせてOpenRouterでVeo3互換のJSONプロンプトを生成します。最小限の流れで使える実装です。
                 </p>
             </div>
         </section>
@@ -80,33 +80,32 @@
                 <div class="grid grid-2" style="margin-top: var(--space-8);">
                     <div>
                         <h2>解決したい課題</h2>
-                        <p>動画生成AI「Veo3」で既存動画と類似した映像を生成したいが、手動でプロンプトを作成するのは非常に時間がかかり、結果の再現性も安定しない。特に以下が課題でした：</p>
+                        <p>Veo3に渡すJSONプロンプトを手作業で組み立てるのは手間が大きく、形式の揺れや抜け漏れが起きやすいという課題がありました。そこで、動画から必要情報を機械的に抽出し、決まったテンプレートに流し込む形で安定化を図りました：</p>
                         
                         <ul class="feature-list">
-                            <li>動画の構成要素（被写体、背景、カメラワーク等）の詳細な分析が困難</li>
-                            <li>Veo3の仕様に最適化されたプロンプト構造の把握</li>
-                            <li>時系列に沿ったショット分割とタイムライン管理</li>
-                            <li>否定プロンプトや品質指定の最適化</li>
+                            <li>動画の要点を一定の粒度で説明に落とす工数</li>
+                            <li>Veo3向けJSONの項目抜け・表現ゆれの防止</li>
+                            <li>座標系・カメラ指定などの記述ルールの統一</li>
                         </ul>
                     </div>
 
                     <div>
                         <h2>アプローチと技術選択</h2>
-                        <p>問題を段階的に解決するため、3つのフェーズに分けたAI活用型システムを設計：</p>
+                        <p>Next.jsのAPIで「動画→説明テキスト→JSON生成」の直列パイプラインを実装しました：</p>
                         
                         <div class="highlight-box">
-                            <h4>Phase 1: 動画解析</h4>
-                            <p>Vertex AI（Gemini 2.5-flash）による高精度な動画内容分析</p>
+                            <h4>1. 動画解析（Vertex）</h4>
+                            <p>GCSへアップロード後、Gemini 2.5-Flashで内容説明テキストを取得</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>Phase 2: 構造化</h4>
-                            <p>解析結果をVeo3向けの中間表現に変換</p>
+                            <h4>2. テンプレート化</h4>
+                            <p>説明テキストを事前定義テンプレートに差し込み、モデル指示を統一</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>Phase 3: 最終整形</h4>
-                            <p>OpenRouter経由LLMでVeo3完全対応JSONに最適化</p>
+                            <h4>3. JSON生成（OpenRouter）</h4>
+                            <p>response_format=json_object でVeo3互換JSONを強制出力</p>
                         </div>
                     </div>
                 </div>
@@ -118,37 +117,29 @@
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
                             <h3>動画アップロード & 解析</h3>
-                            <p>ユーザーが動画をアップロードすると、Vertex AI（Gemini 2.5-flash）が以下の要素を自動抽出：</p>
+                            <p>対応形式（MP4/MOV/AVI/MKV/WebM）。GCSに置いた後、Geminiで説明テキスト化：</p>
                             <ul class="feature-list">
-                                <li>シーン分割とタイムライン</li>
-                                <li>被写体の特定と動き</li>
-                                <li>カメラワーク（パン、ズーム等）</li>
-                                <li>背景・環境の詳細</li>
-                                <li>照明・色調・スタイル</li>
+                                <li>動画は最大2GBまで（実装制限）</li>
+                                <li>Gemini応答が空の際はエラー応答</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>Veo3仕様最適化</h3>
-                            <p>解析結果をVeo3の入力仕様に合わせて構造化：</p>
+                            <h3>テンプレート整形</h3>
+                            <p>Veo3向けの必須フィールドが揃うようテンプレートを適用：</p>
                             <ul class="feature-list">
-                                <li>ショット単位の時間配分計算</li>
-                                <li>カメラ指示の標準化</li>
-                                <li>品質パラメータの自動設定</li>
-                                <li>否定プロンプトの生成</li>
-                                <li>スタイル一貫性の保証</li>
+                                <li>version/engine_hint/meta/globals/scene 等の必須項目</li>
+                                <li>カメラ/座標の表現（SCREEN-LEFT/RIGHT等）を統一</li>
+                                <li>否定指定や品質制約を既定で付与</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>JSON出力 & 検証</h3>
-                            <p>OpenRouter経由のLLMで最終整形し、実用可能なプロンプトを生成：</p>
+                            <h3>JSON出力 & 簡易検証</h3>
+                            <p>OpenRouterの応答をJSON解析し、必須フィールドの有無を確認：</p>
                             <ul class="feature-list">
-                                <li>Veo3 APIフォーマットに完全対応</li>
-                                <li>プロンプト長の最適化</li>
-                                <li>重複要素の除去</li>
-                                <li>精度と再現性のバランス調整</li>
-                                <li>エラー処理と品質チェック</li>
+                                <li>コードブロック除去 → JSON.parse → 必須項目チェック</li>
+                                <li>不足時はエラーを返し再試行を促す</li>
                             </ul>
                         </div>
                     </div>
@@ -172,10 +163,9 @@
                         <div>
                             <h3>フロントエンド・バックエンド</h3>
                             <div class="skill-tags">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Flask/FastAPI</span>
-                                <span class="skill-tag">JavaScript</span>
-                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">Next.js</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Tailwind CSS</span>
                             </div>
                         </div>
                     </div>
@@ -189,20 +179,17 @@
                         <div>
                             <h3>プロジェクトの成果</h3>
                             <ul class="feature-list">
-                                <li><strong>処理時間の大幅短縮：</strong>手動作業2時間 → 自動化で5分以内</li>
-                                <li><strong>再現精度の向上：</strong>構造化アプローチで一貫した品質</li>
-                                <li><strong>Veo3仕様への完全対応：</strong>プロンプトエラー率ほぼゼロ</li>
-                                <li><strong>拡張可能性：</strong>他動画生成AIへの応用基盤</li>
+                                <li>Veo3向け項目の抜け漏れをテンプレートで抑制</li>
+                                <li>ファイル検証・エラー応答を追加して運用を安定化</li>
                             </ul>
                         </div>
 
                         <div>
                             <h3>技術的な学び</h3>
                             <ul class="feature-list">
-                                <li><strong>多段階AI活用：</strong>役割分担による精度向上手法</li>
-                                <li><strong>動画解析API：</strong>Vertex AIの効果的な使用方法</li>
-                                <li><strong>プロンプト工学：</strong>LLM最適化とパラメータ調整</li>
-                                <li><strong>APIフォールバック：</strong>安定性重視の設計原則</li>
+                                <li>response_format=json_object の安定性と限界</li>
+                                <li>Gemini応答が空になるケースの扱い</li>
+                                <li>テンプレートでの表現統一の有効性</li>
                             </ul>
                         </div>
                     </div>
@@ -211,7 +198,7 @@
                 <!-- 実装のポイント -->
                 <div class="highlight-box" style="margin-top: var(--space-8);">
                     <h4>実装で重視したポイント</h4>
-                    <p>このプロジェクトでは、単純な動画→テキスト変換ではなく、<strong>「安定再現性」</strong>を最優先に設計しました。各AIモデルの特性を理解し、解析→構造化→整形の3段階で責任を分離することで、最終的なプロンプトの品質と一貫性を担保。また、Veo3の仕様変更にも対応できる柔軟な設計を心がけ、将来の拡張性を確保しています。</p>
+                    <p>大げさにせず、(1) 入力検証、(2) テンプレ整形、(3) JSON検証 という最小限の工程で流れを安定化しました。必要に応じてモデルやテンプレの微調整で品質を上げる前提です。</p>
                 </div>
 
                 <!-- 次のプロジェクト -->
