@@ -349,10 +349,17 @@ p {
 
 /* ツールカード（#tools）内の縦位置を統一 */
 #tools .card-header {
-  min-height: 120px;
+  min-height: 108px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: var(--space-2);
+}
+#tools .card-title {
+  margin-bottom: var(--space-1);
+}
+#tools .card-subtitle {
+  margin-bottom: var(--space-2);
 }
 #tools .card-content {
   display: flex;
@@ -360,27 +367,22 @@ p {
 }
 #tools .card-description {
   flex: 0 0 auto;
-  min-height: 160px;
+  min-height: 140px;
+  margin-top: 0;
 }
 #tools .feature-list {
   flex: 0 0 auto;
-  min-height: 156px;
+  min-height: 132px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: var(--space-3);
 }
 #tools .skill-tags {
-  min-height: 80px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-}
-
-@media (max-width: 600px) {
-  #tools .card-header { min-height: 108px; }
-  #tools .card-description { min-height: 136px; }
-  #tools .feature-list { min-height: 132px; }
-  #tools .skill-tags { min-height: 64px; }
+  min-height: 64px;
 }
 
 /* #tools カード内テキスト幅を少し狭く（可読性向上） */
@@ -404,6 +406,13 @@ p {
   #tools .card-content {
     max-width: 100%;
   }
+}
+
+@media (max-width: 600px) {
+  #tools .card-header { min-height: 108px; }
+  #tools .card-description { min-height: 136px; }
+  #tools .feature-list { min-height: 132px; }
+  #tools .skill-tags { min-height: 64px; }
 }
 
 /* ナビゲーション */
