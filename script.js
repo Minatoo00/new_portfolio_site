@@ -320,10 +320,33 @@
         initializeStandaloneCopyButtons();
     }
     
+    // mailtoリンクの動作を安定させる
+    function initializeMailtoLinks() {
+        const mailLinks = document.querySelectorAll('a[href^="mailto:"]');
+
+        mailLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                const mailto = link.getAttribute('href');
+                if (!mailto) return;
+
+                event.stopPropagation();
+
+                // デフォルト動作で開かない場合のフォールバック
+                setTimeout(() => {
+                    try {
+                        window.location.href = mailto;
+                    } catch (error) {
+                        console.error('mailtoリンクの起動に失敗しました:', error);
+                    }
+                }, 0);
+            });
+        });
+    }
+
     // スタンドアローンコピーボタンの初期化
     function initializeStandaloneCopyButtons() {
         const standaloneCopyButtons = document.querySelectorAll('.copy-email-btn:not(.contact-dropdown .copy-email-btn)');
-        
+
         standaloneCopyButtons.forEach(button => {
             button.addEventListener('click', function(event) {
                 event.preventDefault();
@@ -430,6 +453,7 @@
             initializeCardInteractions();
             initializeFormHandlers();
             initializeContactDropdown(); // コンタクトドロップダウン初期化
+            initializeMailtoLinks();
             respectUserMotionPreferences();
             handleResize(); // 初回実行
             
@@ -466,4 +490,3 @@
     };
 
 })();
-
