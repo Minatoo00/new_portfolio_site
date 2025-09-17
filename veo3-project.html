@@ -91,21 +91,33 @@
 
                     <div>
                         <h2>アプローチと技術選択</h2>
-                        <p>Next.jsのAPIで「動画→説明テキスト→JSON生成」の直列パイプラインを実装しました：</p>
-                        
+                        <p>フロントで選択した動画を <code>/api/process</code> に送信し、<strong>ファイル検証 → GCS保存 → Vertexで説明文抽出 → テンプレ合成 → OpenRouterでVeo3 JSON生成 → 検証</strong> の順で処理します。</p>
+
                         <div class="highlight-box">
-                            <h4>1. 動画解析（Vertex）</h4>
-                            <p>GCSへアップロード後、Gemini 2.5-Flashで内容説明テキストを取得</p>
+                            <h4>1. フロント → API（/api/process）</h4>
+                            <ul class="feature-list">
+                                <li>POST <code>multipart/form-data</code>（フィールド名: <code>file</code>）</li>
+                                <li>バリデーション: 最大2GB・対応形式（MP4/MOV/AVI/MKV/WebM）</li>
+                                <li>不正時は400/バリデーションメッセージを返却</li>
+                            </ul>
                         </div>
-                        
+
                         <div class="highlight-box">
-                            <h4>2. テンプレート化</h4>
-                            <p>説明テキストを事前定義テンプレートに差し込み、モデル指示を統一</p>
+                            <h4>2. GCS保存 → Vertexで説明文</h4>
+                            <ul class="feature-list">
+                                <li>GCSバケット（環境変数 <code>GCS_BUCKET</code>）へアップロード → <code>gs://</code> を取得</li>
+                                <li>Vertex AI Gemini 2.5‑Flash（既定 <code>us-central1</code>）で動画内容の説明テキストを生成</li>
+                                <li>説明が得られない場合は詳細付きでエラー応答（502）</li>
+                            </ul>
                         </div>
-                        
+
                         <div class="highlight-box">
-                            <h4>3. JSON生成（OpenRouter）</h4>
-                            <p>response_format=json_object でVeo3互換JSONを強制出力</p>
+                            <h4>3. テンプレ合成 → OpenRouterでVeo3 JSON</h4>
+                            <ul class="feature-list">
+                                <li>説明文をテンプレートに差し込み、モデル指示を統一</li>
+                                <li>OpenRouter Chat Completions（<code>response_format=json_object</code>）でVeo3互換JSONを生成（既定モデル: <code>anthropic/claude-3.5-sonnet</code>／<code>OPENROUTER_MODEL</code>で変更可）</li>
+                                <li>必須フィールド（version/engine_hint/meta/...）を検証し、問題があればエラーメッセージと共に返却</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
