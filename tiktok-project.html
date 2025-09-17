@@ -107,21 +107,21 @@
 
                     <div>
                         <h2>技術的アプローチ</h2>
-                        <p>外部の無料APIを順番に呼び出し、最初に取得できた動画URLを使う素直な実装です：</p>
+                        <p>信頼性を重視した3層のフォールバック戦略で、様々な状況に対応できる堅牢なシステムを構築しました：</p>
                         
                         <div class="highlight-box">
-                            <h4>順次フォールバック</h4>
-                            <p>TikWM → SSSTik → SnapTik → TiklyDown の順で試行</p>
+                            <h4>Layer 1: 外部API群</h4>
+                            <p>4つのサービス（TikWM、SSSTik、SnapTik、TiklyDown）を順次試行。各APIで15秒タイムアウト、HD画質を優先して取得</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>ストリーム保存</h4>
-                            <p>取得した動画URLをサーバーでストリームしてmp4に保存</p>
+                            <h4>Layer 2: Puppeteerスクレイピング</h4>
+                            <p>API群が失敗した場合、ChromeでTikTokページを開いて動画URLを直接抽出。MP4とHLS形式の両方に対応</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>エラーハンドリング</h4>
-                            <p>失敗時は次のAPIへ切替。最終的に失敗ならメッセージを返します</p>
+                            <h4>Layer 3: yt-dlp最終フォールバック</h4>
+                            <p>スクレイピングも失敗した場合、yt-dlpによる最終手段。FFmpegと連携してHLS結合やフォーマット変換を実行</p>
                         </div>
                     </div>
                 </div>
