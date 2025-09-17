@@ -285,56 +285,17 @@
 
                 <!-- システムフロー -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>システムフロー</h2>
-                    <p class="text-sub">3層のフォールバック機能による堅牢な処理フローを図解します。</p>
+                    <h2>処理の流れ</h2>
+                    <p class="text-sub">URL入力から動画保存まで、失敗に備えた段階的な処理を実行します。</p>
                     
-                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
-                        <div class="card">
-                            <h3>🔗 URL入力・検証</h3>
-                            <ul class="feature-list">
-                                <li>TikTok URLの形式チェック</li>
-                                <li>リアルタイムバリデーション</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h3>🌐 Layer 1: 外部API群</h3>
-                            <ul class="feature-list">
-                                <li>TikWM → SSSTik → SnapTik → TiklyDown</li>
-                                <li>各API 15秒タイムアウト、HD画質優先</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h3>🔍 Layer 2: スクレイピング</h3>
-                            <ul class="feature-list">
-                                <li>Puppeteer + Chrome起動</li>
-                                <li>TikTokページから動画URL抽出</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h3>🛠️ Layer 3: yt-dlp</h3>
-                            <ul class="feature-list">
-                                <li>最終フォールバック実行</li>
-                                <li>FFmpeg連携でHLS結合</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h3>💾 ストリーム保存</h3>
-                            <ul class="feature-list">
-                                <li>Node.jsストリームで効率的保存</li>
-                                <li>自動ファイル名生成（UUID付き）</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h3>📤 結果返却</h3>
-                            <ul class="feature-list">
-                                <li>ダウンロードリンク生成</li>
-                                <li>動画情報（タイトル、画質）表示</li>
-                            </ul>
+                    <div class="highlight-box" style="margin-top: var(--space-6);">
+                        <div style="line-height: 1.8;">
+                            <p><strong>1. URL検証</strong> → TikTok URLの形式確認</p>
+                            <p><strong>2. 外部API試行</strong> → TikWM、SSSTik、SnapTik、TiklyDownを順次実行（各15秒タイムアウト）</p>
+                            <p><strong>3. スクレイピング</strong> → API群が失敗した場合、Puppeteerでページから直接抽出</p>
+                            <p><strong>4. yt-dlp実行</strong> → 最終手段として、yt-dlp + FFmpegで変換</p>
+                            <p><strong>5. ファイル保存</strong> → Node.jsストリームで効率的にMP4保存</p>
+                            <p><strong>6. 結果返却</strong> → ダウンロードリンクと動画情報を表示</p>
                         </div>
                     </div>
                 </div>
