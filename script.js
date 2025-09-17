@@ -411,31 +411,6 @@
         }, 3000);
     }
 
-    // mailtoリンクの互換性向上（日本語の件名/本文をエンコードして設定）
-    function buildMailtoHref(to, subject, body) {
-        const encodedSubject = encodeURIComponent(subject);
-        const encodedBody = encodeURIComponent(body);
-        return `mailto:${to}?subject=${encodedSubject}&body=${encodedBody}`;
-    }
-
-    function initializeMailtoLinks() {
-        const subject = 'ポートフォリオサイトからのお問い合わせ';
-        const body = 'はじめまして。\r\n\r\nお名前：\r\nご用件：\r\n\r\nよろしくお願いいたします。';
-        const selectors = [
-            '.contact-options a[href^="mailto:"]',
-            '#contact a[href^="mailto:"]'
-        ];
-
-        selectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(link => {
-                const href = link.getAttribute('href') || '';
-                const match = href.match(/^mailto:([^?]+).*$/);
-                const to = match && match[1] ? match[1] : 'minato2ban@icloud.com';
-                link.setAttribute('href', buildMailtoHref(to, subject, body));
-            });
-        });
-    }
-
     // 初期化処理
     function initialize() {
         try {
@@ -455,7 +430,6 @@
             initializeCardInteractions();
             initializeFormHandlers();
             initializeContactDropdown(); // コンタクトドロップダウン初期化
-            initializeMailtoLinks(); // mailtoリンクのエンコード設定
             respectUserMotionPreferences();
             handleResize(); // 初回実行
             
