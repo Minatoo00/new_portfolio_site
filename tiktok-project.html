@@ -204,21 +204,33 @@
                 <!-- エラーハンドリング戦略 -->
                 <div style="margin-top: var(--space-8);">
                     <h2>エラーハンドリング</h2>
+                    <p class="text-sub">各層で異なるエラーパターンに対応し、詳細なログとユーザーフレンドリーな通知を実装しています。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
-                            <h3>段階的フォールバック</h3>
+                            <h3>🔍 詳細なエラー分類</h3>
                             <ul class="feature-list">
-                                <li>1つのAPIが失敗したら、次のAPIを試す</li>
-                                <li>すべて失敗したらエラーメッセージを返す</li>
+                                <li>HTTPステータス別の対応（401/403/502等）</li>
+                                <li>タイムアウト（15秒API、30秒ダウンロード）</li>
+                                <li>JSON解析エラーとレスポンス形式不正</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>ユーザー通知</h3>
+                            <h3>📊 ログとモニタリング</h3>
                             <ul class="feature-list">
-                                <li>失敗理由（タイムアウトなど）を簡潔に表示</li>
-                                <li>再試行ボタンで最初からやり直し</li>
+                                <li>各API試行結果のコンソールログ出力</li>
+                                <li>server.logファイルへの詳細記録</li>
+                                <li>品質情報（HD/標準画質）の取得状況表示</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>🛡️ 堅牢なファイル処理</h3>
+                            <ul class="feature-list">
+                                <li>ダウンロード失敗時の不完全ファイル自動削除</li>
+                                <li>ストリーム書き込みエラーの適切な処理</li>
+                                <li>ディレクトリ存在チェックと自動作成</li>
                             </ul>
                         </div>
                     </div>
