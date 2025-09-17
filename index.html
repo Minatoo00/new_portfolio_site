@@ -170,22 +170,22 @@
                     <article class="card">
                         <div class="card-header">
                             <h3 class="card-title">Cursor</h3>
-                            <p class="card-subtitle">AIコードエディタ（VS Codeベース）</p>
+                            <p class="card-subtitle">設計・実装（主にClaude 4 sonnet）</p>
                         </div>
 
                         <div class="card-content">
-                            <p class="card-description">自然言語でのコード編集、レポジトリ文脈を参照するチャット、高精度のTab補完により実装を加速。Cmd‑K（インライン編集）やエージェントで複数ファイルの変更をdiffで安全に適用します。</p>
+                            <p class="card-description">要件定義から設計書を作成し、そのまま実装まで進める際に主力で使用。実装の難しさが高くない場合は、CursorでClaude 4 sonnetを用いて実装します（ソフトウェア開発のデザイン面に強いため）。</p>
 
                             <ul class="feature-list">
-                                <li>チャットでレポジトリ文脈を参照しながら実装案を生成</li>
-                                <li>Cmd‑K／エージェントで変更提案→差分確認→適用</li>
-                                <li>Tab補完とクイックフィックスで入力負荷を削減</li>
+                                <li>設計書ドラフトの生成と見直し→実装まで一貫対応</li>
+                                <li>Cmd‑K（インライン編集）/ エージェントで複数ファイルの差分を安全適用</li>
+                                <li>レポジトリ文脈を参照したチャットと高精度Tab補完</li>
                             </ul>
 
                             <div class="skill-tags">
-                                <span class="skill-tag">リポジトリ文脈</span>
-                                <span class="skill-tag">インライン編集</span>
-                                <span class="skill-tag">補完</span>
+                                <span class="skill-tag">設計書作成</span>
+                                <span class="skill-tag">Claude 4 sonnet</span>
+                                <span class="skill-tag">差分適用</span>
                             </div>
                         </div>
 
@@ -198,22 +198,22 @@
                     <article class="card">
                         <div class="card-header">
                             <h3 class="card-title">Codex CLI</h3>
-                            <p class="card-subtitle">LLM駆動CLI（コード生成・変換の自動化）</p>
+                            <p class="card-subtitle">高難度実装 / 変更・リファクタ（gpt-5-codex medium）</p>
                         </div>
 
                         <div class="card-content">
-                            <p class="card-description">短い指示からスクリプトや設定ファイルの雛形を生成し、繰り返し発生する編集作業を自動化するCLIワークフローとして活用しています。ローカルで実行し、Gitの差分で安全に検証します。</p>
+                            <p class="card-description">実装の難しさが高い場合に採用。完成後の機能追加や変更・リファクタでは、Codexのgpt-5-codex mediumモデルを使用します（ソースコードのコンテキスト理解に長けているため）。</p>
 
                             <ul class="feature-list">
-                                <li>プロンプト→コード／スクリプト／設定の雛形生成</li>
-                                <li>同一手順の再実行で差分を安定適用（Gitで検証）</li>
-                                <li>CI/CDやローカルスクリプトに組み込みやすい単一コマンド</li>
+                                <li>高難度タスク向けの設計・実装支援</li>
+                                <li>既存コードの文脈を踏まえた変更提案とリファクタ</li>
+                                <li>Git差分を前提に安全に適用・検証</li>
                             </ul>
 
                             <div class="skill-tags">
-                                <span class="skill-tag">CLI</span>
-                                <span class="skill-tag">自動化</span>
-                                <span class="skill-tag">差分運用</span>
+                                <span class="skill-tag">gpt-5-codex medium</span>
+                                <span class="skill-tag">コンテキスト理解</span>
+                                <span class="skill-tag">リファクタ</span>
                             </div>
                         </div>
 
@@ -226,22 +226,22 @@
                     <article class="card">
                         <div class="card-header">
                             <h3 class="card-title">ChatGPT</h3>
-                            <p class="card-subtitle">要件明確化 / 技術調査 / 設計レビュー</p>
+                            <p class="card-subtitle">技術調査 / 要件定義書作成</p>
                         </div>
 
                         <div class="card-content">
-                            <p class="card-description">要件の言語化や設計の代替案検討、テスト観点の洗い出しに活用。調査結果の要点整理と説明生成により、意思決定とドキュメント化を加速します。</p>
+                            <p class="card-description">作成したいWebアプリの技術調査を行い、最低限の主要な使用技術を含む要件定義書を作成します。以後の設計・実装に必要な前提を短時間で固めます。</p>
 
                             <ul class="feature-list">
-                                <li>要件・非機能の明確化とエッジケース洗い出し</li>
-                                <li>ライブラリ比較やAPI仕様の要点整理（検証前提）</li>
-                                <li>レビュー観点とテストケースの発想支援</li>
+                                <li>主要技術候補の洗い出しと比較・選定</li>
+                                <li>制約条件・非機能要件の整理と言語化</li>
+                                <li>要件定義書ドラフトの生成と改訂</li>
                             </ul>
 
                             <div class="skill-tags">
+                                <span class="skill-tag">技術調査</span>
                                 <span class="skill-tag">要件定義</span>
-                                <span class="skill-tag">リサーチ</span>
-                                <span class="skill-tag">レビュー</span>
+                                <span class="skill-tag">ドキュメント</span>
                             </div>
                         </div>
 
@@ -252,8 +252,16 @@
                 </div>
 
                 <div class="highlight-box" style="margin-top: var(--space-8);">
-                    <h4>組み合わせによる価値</h4>
-                    <p class="text-sub">Cursorで安全にコード変更、Codex CLIで反復作業を自動化、ChatGPTで要件・検証観点を補強。3者を役割分担させることで、開発スピードと品質（再現性・一貫性・可読性）を両立します。</p>
+                    <h4>開発フローと意思決定基準</h4>
+                    <ul class="feature-list">
+                        <li>Step 1（ChatGPT）: 技術調査 → 主要技術を含む要件定義書を作成</li>
+                        <li>Step 2: 実装の難しさを評価（レベル感の判定）</li>
+                        <li>Step 3（実装方針）:
+                            <br>・難易度が高い → Codex を使用
+                            <br>・それ以外 → CursorでClaude 4 sonnetを使用して設計・実装（多くのケースで採用。デザイン面に強い）
+                        </li>
+                        <li>Step 4（変更・拡張）: 完了後の機能追加・変更・リファクタは Codex の gpt-5-codex medium を使用（コード文脈理解に強い）</li>
+                    </ul>
                 </div>
             </div>
         </section>
