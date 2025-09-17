@@ -23,6 +23,7 @@
             <ul class="nav-links" role="menubar">
                 <li role="none"><a href="#home" class="nav-link active" role="menuitem">ホーム</a></li>
                 <li role="none"><a href="#projects" class="nav-link" role="menuitem">プロジェクト</a></li>
+                <li role="none"><a href="#tools" class="nav-link" role="menuitem">ツール</a></li>
                 <li role="none"><a href="#about" class="nav-link" role="menuitem">プロフィール</a></li>
                 <li role="none"><a href="#contact" class="nav-link" role="menuitem">コンタクト</a></li>
             </ul>
@@ -154,6 +155,105 @@
                             <a href="tiktok-project.html" class="button button-primary">詳細を見る</a>
                         </div>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI駆動開発ツール セクション -->
+        <section id="tools" class="section" style="background: var(--bg);">
+            <div class="container">
+                <h2>AI駆動開発ツール</h2>
+                <p class="text-sub">日常的に活用しているAI支援ツールと、開発フローへの組み込み方を紹介します。</p>
+
+                <div class="grid grid-auto" style="margin-top: var(--space-8);">
+                    <!-- Cursor -->
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Cursor</h3>
+                            <p class="card-subtitle">AI IDE / ペアプログラミング</p>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="card-description">エディタ内でコード生成・リファクタリング・テスト作成までを対話的に完結。リポジトリ全体の文脈を踏まえた変更提案で、スピードと一貫性を両立します。</p>
+
+                            <ul class="feature-list">
+                                <li>リポジトリ横断の文脈理解と安全な一括編集</li>
+                                <li>型やLintに整合した差分提案と自動修正</li>
+                                <li>設計レビューと代替案の提示（diff比較）</li>
+                            </ul>
+
+                            <div class="skill-tags">
+                                <span class="skill-tag">AI IDE</span>
+                                <span class="skill-tag">リファクタリング</span>
+                                <span class="skill-tag">テスト生成</span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="https://www.cursor.com/" target="_blank" rel="noopener" class="button button-secondary">公式サイト</a>
+                        </div>
+                    </article>
+
+                    <!-- Codex CLI -->
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Codex CLI</h3>
+                            <p class="card-subtitle">CLIオートメーション / スキャフォールド</p>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="card-description">要件を短いプロンプトで記述し、雛形生成・反復実行・差分適用を自動化。プロジェクト横断の共通タスク（生成・変換・検証）をスクリプト化して再現性を高めます。</p>
+
+                            <ul class="feature-list">
+                                <li>雛形生成・コード変換・設定ファイル更新の自動化</li>
+                                <li>反復実行しやすいコマンド設計と差分適用</li>
+                                <li>CI/CDやローカル開発フローへの容易な組み込み</li>
+                            </ul>
+
+                            <div class="skill-tags">
+                                <span class="skill-tag">CLI</span>
+                                <span class="skill-tag">自動化</span>
+                                <span class="skill-tag">再現性</span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="#about" class="button button-secondary">ワークフローを見る</a>
+                        </div>
+                    </article>
+
+                    <!-- ChatGPT -->
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">ChatGPT</h3>
+                            <p class="card-subtitle">要件定義 / リサーチ / レビュー</p>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="card-description">要件の言語化、技術調査、設計の代替案検討、エッジケース洗い出しに活用。仮説検証を短サイクルで回し、意思決定の質を高めます。</p>
+
+                            <ul class="feature-list">
+                                <li>要件精緻化（制約条件・非機能要件の明確化）</li>
+                                <li>HIG/アクセシビリティ準拠のチェックリスト化</li>
+                                <li>コードレビューとテスト観点の補強</li>
+                            </ul>
+
+                            <div class="skill-tags">
+                                <span class="skill-tag">要件定義</span>
+                                <span class="skill-tag">リサーチ</span>
+                                <span class="skill-tag">レビュー</span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="https://chatgpt.com" target="_blank" rel="noopener" class="button button-secondary">ChatGPTを開く</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>組み合わせによる価値</h4>
+                    <p class="text-sub">Cursorで安全にコード変更、Codex CLIで反復作業を自動化、ChatGPTで要件・検証観点を補強。3者を役割分担させることで、開発スピードと品質（再現性・一貫性・可読性）を両立します。</p>
                 </div>
             </div>
         </section>
