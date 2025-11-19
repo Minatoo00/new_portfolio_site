@@ -26,7 +26,7 @@
                     <span class="dropdown-icon">▾</span>
                 </button>
                 <div class="contact-options" role="menu" aria-hidden="true">
-                    <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" 
+                    <a href="mailto:minato2ban@icloud.com?subject=%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%81%8B%E3%82%89%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%A6%E3%80%82%0D%0A%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E3%81%94%E7%94%A8%E4%BB%B6%EF%BC%9A%0D%0A%0D%0A%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%84%E3%81%9F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82" 
                        class="contact-option" role="menuitem">
                         <span class="contact-icon">✉️</span>
                         メールアプリで開く
@@ -62,7 +62,7 @@
                 <div class="project-meta">
                     <div class="project-meta-item">
                         <div class="project-meta-label">プロジェクト期間</div>
-                        <div class="project-meta-value">2024年後半</div>
+                        <div class="project-meta-value">2025年8月</div>
                     </div>
                     
                     <div class="project-meta-item">
@@ -80,66 +80,85 @@
                 <div class="grid grid-2" style="margin-top: var(--space-8);">
                     <div>
                         <h2>解決したい課題</h2>
-                        <p>Veo3に渡すJSONプロンプトを手作業で組み立てるのは手間が大きく、形式の揺れや抜け漏れが起きやすいという課題がありました。そこで、動画から必要情報を機械的に抽出し、決まったテンプレートに流し込む形で安定化を図りました：</p>
-                        
+                        <p>最近、テキストのプロンプトからリアルな動画を生成できるAI技術が急速に発展し、私もこのAI動画生成を活用して動画を制作してきました。制作の際は、まず参考となるお手本動画を決め、その内容を再現する形で生成するのが一般的です。しかし毎回課題となったのが、お手本動画をAIに指示するプロンプトへ落とし込む作業でした。これが非常に手間と労力を要するため、私は動画をアップロードするだけで自動的にプロンプトを生成できるツールを開発し、この問題の解決を図りました。</p>
+
                         <ul class="feature-list">
-                            <li>動画の要点を一定の粒度で説明に落とす工数</li>
-                            <li>Veo3向けJSONの項目抜け・表現ゆれの防止</li>
-                            <li>座標系・カメラ指定などの記述ルールの統一</li>
+                            <li>お手本動画の内容をAI指示用プロンプトへ正確に落とし込む作業が負担</li>
+                            <li>手作業ゆえに時間・労力がかかり、表現の揺れや抜け漏れが発生</li>
+                            <li>動画アップロード→自動プロンプト生成で作業の自動化と再現性を確保</li>
                         </ul>
                     </div>
 
                     <div>
                         <h2>アプローチと技術選択</h2>
-                        <p>Next.jsのAPIで「動画→説明テキスト→JSON生成」の直列パイプラインを実装しました：</p>
+                        <p>動画からプロンプトを自動生成する3段階のパイプラインを構築しました。ユーザーは動画をアップロードするだけで、Veo3で使用可能なJSONプロンプトが完成します：</p>
                         
                         <div class="highlight-box">
-                            <h4>1. 動画解析（Vertex）</h4>
-                            <p>GCSへアップロード後、Gemini 2.5-Flashで内容説明テキストを取得</p>
+                            <h4>Step 1: 動画の内容理解</h4>
+                            <p>動画をGCSに保存し、Vertex AI（Gemini 2.5-Flash）で動画内容を詳細に文章化</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>2. テンプレート化</h4>
-                            <p>説明テキストを事前定義テンプレートに差し込み、モデル指示を統一</p>
+                            <h4>Step 2: プロンプト設計書の適用</h4>
+                            <p>Geminiの説明文をVeo3仕様のテンプレートに組み込み、カメラ設定や技術制約を統一</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>3. JSON生成（OpenRouter）</h4>
-                            <p>response_format=json_object でVeo3互換JSONを強制出力</p>
+                            <h4>Step 3: JSON構造化</h4>
+                            <p>OpenRouter APIでVeo3互換のJSON形式に変換し、必須フィールドを検証して完成</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 技術実装詳細 -->
+                <!-- デモ動画 & GitHub -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>主要機能と技術実装</h2>
+                    <h2>デモ動画</h2>
+                    <div class="media-frame" style="margin-top: var(--space-4);">
+                        <video controls preload="metadata" playsinline>
+                            <source src="videos/veo3-demo.mp4" type="video/mp4">
+                            お使いのブラウザは動画に対応していません。
+                        </video>
+                    </div>
+
+                    <div class="repo-links">
+                        <a href="https://github.com/Minatoo00/veo_cursor" class="button button-secondary" target="_blank" rel="noopener">GitHub リポジトリ</a>
+                        <a href="https://github.com/Minatoo00/veo_cursor#readme" class="button button-tertiary" target="_blank" rel="noopener">README</a>
+                    </div>
+                </div>
+
+                <!-- 主要機能 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>主要機能</h2>
+                    <p class="text-sub">このツールが提供する3つの核となる機能をご紹介します。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
-                            <h3>動画アップロード & 解析</h3>
-                            <p>対応形式（MP4/MOV/AVI/MKV/WebM）。GCSに置いた後、Geminiで説明テキスト化：</p>
+                            <h3>📤 簡単アップロード</h3>
+                            <p>ドラッグ&ドロップまたはクリックで動画を選択。多様な形式に対応し、アップロード後は自動で処理が開始されます。</p>
                             <ul class="feature-list">
-                                <li>動画は最大2GBまで（実装制限）</li>
-                                <li>Gemini応答が空の際はエラー応答</li>
+                                <li>対応形式：MP4, MOV, AVI, MKV, WebM</li>
+                                <li>最大ファイルサイズ：2GB</li>
+                                <li>リアルタイム進捗表示</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>テンプレート整形</h3>
-                            <p>Veo3向けの必須フィールドが揃うようテンプレートを適用：</p>
+                            <h3>🤖 AI動画解析</h3>
+                            <p>Vertex AI（Gemini 2.5-Flash）が動画の内容を詳細に分析。シーンの構成、オブジェクト、動きを自動で文章化します。</p>
                             <ul class="feature-list">
-                                <li>version/engine_hint/meta/globals/scene 等の必須項目</li>
-                                <li>カメラ/座標の表現（SCREEN-LEFT/RIGHT等）を統一</li>
-                                <li>否定指定や品質制約を既定で付与</li>
+                                <li>視覚情報の詳細な記述と分析</li>
+                                <li>カメラワークや構図の自動認識</li>
+                                <li>音響情報や雰囲気の把握</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>JSON出力 & 簡易検証</h3>
-                            <p>OpenRouterの応答をJSON解析し、必須フィールドの有無を確認：</p>
+                            <h3>⚡ プロンプト自動生成</h3>
+                            <p>OpenRouter APIを使用してVeo3完全対応のJSONプロンプトを生成。コピー&ペーストですぐに使用できます。</p>
                             <ul class="feature-list">
-                                <li>コードブロック除去 → JSON.parse → 必須項目チェック</li>
-                                <li>不足時はエラーを返し再試行を促す</li>
+                                <li>Veo3仕様に完全準拠したJSON出力</li>
+                                <li>必須フィールドの自動補完と検証</li>
+                                <li>エラー時の分かりやすいメッセージ表示</li>
                             </ul>
                         </div>
                     </div>
@@ -177,28 +196,31 @@
                     
                     <div class="grid grid-2">
                         <div>
-                            <h3>プロジェクトの成果</h3>
+                            <h3>解決できた課題</h3>
                             <ul class="feature-list">
-                                <li>Veo3向け項目の抜け漏れをテンプレートで抑制</li>
-                                <li>ファイル検証・エラー応答を追加して運用を安定化</li>
+                                <li>手作業で30分かかっていたプロンプト作成を3分に短縮</li>
+                                <li>Veo3の複雑な仕様（50項目以上）を自動で適用</li>
+                                <li>表現の揺れや必須項目の抜け漏れを完全に排除</li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3>技術的な学び</h3>
+                            <h3>実装上の課題と改善点</h3>
                             <ul class="feature-list">
-                                <li>response_format=json_object の安定性と限界</li>
-                                <li>Gemini応答が空になるケースの扱い</li>
-                                <li>テンプレートでの表現統一の有効性</li>
+                                <li><strong>パフォーマンス：</strong>2GBの動画を一度にメモリへ読み込む実装になっており、サーバー負荷が高かった。ストリーム処理への変更が必要</li>
+                                <li><strong>UX：</strong>エラー時に画面上のポップアップ（alert）だけで通知しており、閉じると何が問題だったか分からなくなる。画面内に常時表示する設計に改善が必要</li>
+                                <li><strong>アクセシビリティ：</strong>ドラッグ&ドロップ領域がキーボードで操作できず、スクリーンリーダーも正しく読み上げない。role属性やtabIndexの追加が必要</li>
+                                <li><strong>コード品質：</strong>Tailwindのクラス名を動的に生成したため、ビルド時に認識されずスタイルが適用されない箇所があった。クラスの明示的な列挙が必要</li>
+                                <li><strong>要件との齟齬：</strong>仕様書ではFiles APIを使うべき箇所でGCSを使用しており、アップロード後のファイル削除処理も抜けていた。仕様の再確認とクリーンアップ処理の追加が必要</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- 実装のポイント -->
+                <!-- 実装で重視したポイント -->
                 <div class="highlight-box" style="margin-top: var(--space-8);">
-                    <h4>実装で重視したポイント</h4>
-                    <p>大げさにせず、(1) 入力検証、(2) テンプレ整形、(3) JSON検証 という最小限の工程で流れを安定化しました。必要に応じてモデルやテンプレの微調整で品質を上げる前提です。</p>
+                    <h4>開発時に重視した設計思想</h4>
+                    <p><strong>シンプルさと確実性を優先</strong>：複雑な機能は追加せず、「動画アップロード→AI解析→プロンプト生成」の基本フローを確実に動作させることに集中。各段階で詳細なエラーハンドリングを実装し、問題発生時には原因と対処法を明確に表示する設計としました。</p>
                 </div>
 
                 <!-- 次のプロジェクト -->

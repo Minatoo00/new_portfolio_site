@@ -27,21 +27,32 @@
     // アクティブリンクの更新
     function updateActiveLink() {
         let currentSection = '';
-        const scrollY = window.scrollY + 100; // オフセット調整
+        const scrollY = window.scrollY + 150; // オフセット調整
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
+        // ページ最下部付近の場合、最後のセクションをアクティブに
+        if (windowHeight + window.scrollY >= documentHeight - 100) {
+            const lastSection = Array.from(sections).pop();
+            if (lastSection) {
+                currentSection = lastSection.getAttribute('id');
             }
-        });
+        } else {
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+        }
 
         // アクティブ状態の更新
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === `#${currentSection}` || linkHref === `index.html#${currentSection}`) {
                 link.classList.add('active');
             }
         });
@@ -75,19 +86,29 @@
 
     // ナビゲーションリンクのクリックハンドラー
     function handleNavLinkClick(event) {
-        event.preventDefault();
-        const target = event.target.getAttribute('href');
-        
-        // フォーカス管理
-        event.target.blur();
-        
-        // スムーススクロール実行
-        smoothScrollToTarget(target);
-        
-        // 履歴更新（ただしスクロールはしない）
-        if (history.pushState) {
-            history.pushState(null, null, target);
+        const link = event.currentTarget;
+        if (!link || !link.getAttribute) return;
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        const isInPageHash = href.startsWith('#');
+
+        // 同一ページ内のハッシュリンクのみデフォルト抑止してスムーススクロール
+        if (isInPageHash) {
+            event.preventDefault();
+
+            // フォーカス管理
+            link.blur();
+
+            // スムーススクロール実行
+            smoothScrollToTarget(href);
+
+            // 履歴更新（スクロールはしない）
+            if (history.pushState) {
+                history.pushState(null, '', href);
+            }
         }
+        // それ以外（index.html#... や 他ページ）はブラウザに任せて遷移
     }
 
     // キーボードナビゲーション対応
@@ -196,18 +217,21 @@
 
     // Intersection Observer による要素の表示アニメーション
     function initializeScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.card, .hero-title, .hero-subtitle');
+        const animatedElements = document.querySelectorAll('.card, .hero-title, .hero-subtitle, .hero-description, h2');
         
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -100px 0px',
-            threshold: 0.1
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.15
         };
         
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    // 要素ごとに少しずつ遅延させて順番にアニメーション
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 50);
                 }
             });
         }, observerOptions);
@@ -216,6 +240,11 @@
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             animatedElements.forEach(element => {
                 observer.observe(element);
+            });
+        } else {
+            // アニメーション無効の場合は即座に表示
+            animatedElements.forEach(element => {
+                element.classList.add('animate-in');
             });
         }
     }
@@ -310,10 +339,33 @@
         initializeStandaloneCopyButtons();
     }
     
+    // mailtoリンクの動作を安定させる
+    function initializeMailtoLinks() {
+        const mailLinks = document.querySelectorAll('a[href^="mailto:"]');
+
+        mailLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                const mailto = link.getAttribute('href');
+                if (!mailto) return;
+
+                event.stopPropagation();
+
+                // デフォルト動作で開かない場合のフォールバック
+                setTimeout(() => {
+                    try {
+                        window.location.href = mailto;
+                    } catch (error) {
+                        console.error('mailtoリンクの起動に失敗しました:', error);
+                    }
+                }, 0);
+            });
+        });
+    }
+
     // スタンドアローンコピーボタンの初期化
     function initializeStandaloneCopyButtons() {
         const standaloneCopyButtons = document.querySelectorAll('.copy-email-btn:not(.contact-dropdown .copy-email-btn)');
-        
+
         standaloneCopyButtons.forEach(button => {
             button.addEventListener('click', function(event) {
                 event.preventDefault();
@@ -420,6 +472,7 @@
             initializeCardInteractions();
             initializeFormHandlers();
             initializeContactDropdown(); // コンタクトドロップダウン初期化
+            initializeMailtoLinks();
             respectUserMotionPreferences();
             handleResize(); // 初回実行
             
@@ -456,4 +509,3 @@
     };
 
 })();
-

@@ -347,6 +347,83 @@ p {
   margin-bottom: var(--space-5);
 }
 
+/* ツールカード（#tools）内の縦位置を統一 */
+#tools .card-header {
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: var(--space-2);
+}
+#tools .card-title {
+  margin-bottom: var(--space-1);
+}
+#tools .card-subtitle {
+  margin-bottom: var(--space-2);
+}
+#tools .card-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+#tools .card-description {
+  flex: 1 1 auto;
+  margin: 0;
+}
+#tools .feature-list {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
+}
+#tools .skill-tags {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin-top: 0;
+}
+
+/* #tools カード内テキスト幅を少し狭く（可読性向上） */
+#tools .card-header,
+#tools .card-content {
+  max-width: 360px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tools .grid {
+  grid-auto-rows: 1fr;
+}
+
+#tools .card {
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  #tools .card-header,
+  #tools .card-content {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 600px) {
+  #tools .card-header,
+  #tools .card-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  #tools .card-header { min-height: 108px; }
+  #tools .card-description { min-height: 136px; }
+  #tools .feature-list { min-height: 132px; }
+  #tools .skill-tags { min-height: 64px; }
+}
+
 /* ナビゲーション */
 .navigation {
   position: fixed;
@@ -622,7 +699,9 @@ p {
 
 .card,
 .hero-title,
-.hero-subtitle {
+.hero-subtitle,
+.hero-description,
+h2 {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity var(--transition-normal), transform var(--transition-normal);
@@ -630,6 +709,85 @@ p {
 
 .card.touch-active {
   transform: scale(0.98);
+}
+
+/* ボタンホバーアニメーション強化 */
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-normal), height var(--transition-normal);
+  pointer-events: none;
+}
+
+.button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* スキルタグのホバーアニメーション */
+.skill-tag {
+  transition: all var(--transition-fast);
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(10, 132, 255, 0.2);
+}
+
+/* ナビゲーションリンクのアニメーション */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* カードのホバーアニメーション強化 */
+.card {
+  position: relative;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  box-shadow: var(--shadow-2);
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 1;
 }
 
 /* プロジェクト詳細ページ用スタイル */
@@ -649,6 +807,32 @@ p {
   background: var(--bg-elev);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
+}
+
+/* デモ動画（プロジェクト詳細） */
+.media-frame {
+  aspect-ratio: 240 / 143; /* 2880x1716 ≒ 1.678:1 */
+  width: 100%;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+
+.media-frame > video,
+.media-frame > iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.repo-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
 }
 
 .project-meta-item {

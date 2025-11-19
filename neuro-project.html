@@ -26,7 +26,7 @@
                     <span class="dropdown-icon">▾</span>
                 </button>
                 <div class="contact-options" role="menu" aria-hidden="true">
-                    <a href="mailto:minato2ban@icloud.com?subject=ポートフォリオサイトからのお問い合わせ&body=はじめまして。%0D%0A%0D%0Aお名前：%0D%0Aご用件：%0D%0A%0D%0Aよろしくお願いいたします。" 
+                    <a href="mailto:minato2ban@icloud.com?subject=%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%81%8B%E3%82%89%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%A6%E3%80%82%0D%0A%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E3%81%94%E7%94%A8%E4%BB%B6%EF%BC%9A%0D%0A%0D%0A%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%84%E3%81%9F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82" 
                        class="contact-option" role="menuitem">
                         <span class="contact-icon">✉️</span>
                         メールアプリで開く
@@ -58,11 +58,27 @@
         <!-- プロジェクト詳細 -->
         <section class="section">
             <div class="container">
+                <!-- デモ動画 & GitHub -->
+                <div>
+                    <h2>デモ動画</h2>
+                    <div class="media-frame" style="margin-top: var(--space-4);">
+                        <video controls preload="metadata" playsinline>
+                            <source src="videos/neuro-demo.mp4" type="video/mp4">
+                            お使いのブラウザは動画に対応していません。
+                        </video>
+                    </div>
+
+                    <div class="repo-links">
+                        <a href="https://github.com/Minatoo00/synapflex-next" class="button button-secondary" target="_blank" rel="noopener">GitHub リポジトリ</a>
+                        <a href="https://github.com/Minatoo00/synapflex-next#readme" class="button button-tertiary" target="_blank" rel="noopener">README</a>
+                    </div>
+                </div>
+
                 <!-- プロジェクトメタ情報 -->
                 <div class="project-meta">
                     <div class="project-meta-item">
                         <div class="project-meta-label">プロジェクト期間</div>
-                        <div class="project-meta-value">2024年中期</div>
+                        <div class="project-meta-value">2024年11月</div>
                     </div>
                     
                     <div class="project-meta-item">
@@ -80,70 +96,69 @@
                 <div class="grid grid-2" style="margin-top: var(--space-8);">
                     <div>
                         <h2>解決したい課題</h2>
-                        <p>従来のメンタルヘルスアプリは表面的なアドバイスが多く、個人の脳機能特性や神経学的状態を考慮していない。以下の課題を解決したいと考えました：</p>
+                        <p>毎日の生活の中で、「今日は集中できない」「調子がいまひとつだ」と感じる瞬間は誰にでもあります。私は、こうした小さな違和感や悩みを解決したいと思いました。</p>
                         
                         <ul class="feature-list">
-                            <li>一般的すぎるアドバイスで実効性が低い</li>
-                            <li>科学的根拠が不明確で信頼性に欠ける</li>
-                            <li>ユーザー固有の脳機能パターンを無視</li>
-                            <li>短期的対処法のみで根本的改善に至らない</li>
-                            <li>「なぜこのアドバイスなのか」の説明不足</li>
+                            <li>日常の小さな体調不良や集中力の低下を科学的にサポート</li>
+                            <li>「なんとなく調子が悪い」状態に具体的な改善策を提供</li>
+                            <li>脳科学に基づいた根拠のあるアドバイスで安心感を創出</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h2>アプローチ</h2>
-                        <p>過度に複雑にせず、段階を分けて情報を整理する方針です：</p>
+                        <h2>解決アプローチ</h2>
+                        <p>ログイン直後に回答する初期アンケート（睡眠・集中リズム・期待するサポート）をベースラインにし、日々の体調メモをLLMに渡して「仮説づくり → 確認 → 提案」を自動で進める3ステップ構成にしました。</p>
                         
                         <div class="highlight-box">
-                            <h4>初期アンケートの活用</h4>
-                            <p>睡眠/運動/注意などの基礎情報を事前に取得して文脈に反映</p>
+                            <h4>Step 1: ベースライン + 初期分析</h4>
+                            <p>初期アンケートと当日の自由記述をまとめてLLMに渡し、脳部位候補・行動パターン候補・確認したいポイント（はい/いいえ質問）をJSONで取得。Prismaで履歴に保存します。</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>確認質問（フォローアップ）</h4>
-                            <p>はい/いいえで答えられる具体的な質問を最大6件生成して確認</p>
+                            <h4>Step 2: はい/いいえ対話で原因を絞り込む</h4>
+                            <p>自動生成された質問をダッシュボードに表示し、ユーザーの回答を収集。回答内容は再びLLMに送り、仮説が確定するまで最大3ラウンドで追加質問を生成します。</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>仮説と簡潔な提案</h4>
-                            <p>十分な情報が揃ったら仮説と最大3件の提案を返す</p>
+                            <h4>Step 3: 仮説と提案を個別化</h4>
+                            <p>初期フィードバック・プロフィール・対話履歴をすべてLLMに渡して原因仮説と改善策を生成。さらに「身体ケア」「思考テクニック」など関心カテゴリを選ぶと、同じ仮説を軸に再提案を作り分けます。</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 技術実装詳細 -->
+                <!-- 主要機能 -->
                 <div style="margin-top: var(--space-8);">
-                    <h2>システム構成と主要機能</h2>
+                    <h2>主要機能</h2>
+                    <p class="text-sub">体調の変化を科学的に分析し、個人に適した改善策を提供する3つの核となる機能です。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
-                            <h3>初回アンケート（Initial Survey）</h3>
-                            <p>睡眠・運動・集中傾向などの基礎情報を保存（ユーザー毎に1件）。</p>
+                            <h3>📋 個人プロフィール設定</h3>
+                            <p>初回登録時に睡眠・運動・集中傾向などの基礎情報を収集。この情報が分析の文脈として活用されます。</p>
                             <ul class="feature-list">
-                                <li>Next.js App Router + Prisma（SQLite）</li>
-                                <li>サーバーAPI: POST /api/survey</li>
-                                <li>最大2件までの期待カテゴリ選択</li>
+                                <li>生活習慣と認知スタイルの詳細調査</li>
+                                <li>期待するサポート内容の事前設定</li>
+                                <li>個別化分析のベースライン構築</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>フィードバック解析（初回）</h3>
-                            <p>自由記述を受け取り、アンケート文脈と合わせてLLMに送信。</p>
+                            <h3>🧠 AI体調分析</h3>
+                            <p>日々の体調報告を脳科学の観点から分析。関連する脳部位や行動パターンを特定し、原因の仮説を構築します。</p>
                             <ul class="feature-list">
-                                <li>API: POST /api/feedback</li>
-                                <li>OpenRouter Chat Completionsを使用</li>
-                                <li>JSONのみを抽出し、Zodで最低限バリデーション</li>
+                                <li>自然言語での体調報告を詳細分析</li>
+                                <li>脳部位と行動パターンの関連性特定</li>
+                                <li>個人プロフィールとの統合分析</li>
                             </ul>
                         </div>
 
                         <div class="card">
-                            <h3>フォローアップと仮説生成</h3>
-                            <p>はい/いいえ回答を受け取り、必要に応じて次の質問または仮説と提案を返す。</p>
+                            <h3>💬 対話型原因探索</h3>
+                            <p>初期分析結果をもとに、「はい/いいえ」で答えられる質問を自動生成。対話を通じて原因を絞り込みます。</p>
                             <ul class="feature-list">
-                                <li>API: POST /api/feedback/followup</li>
-                                <li>最大3ラウンドまでの対話履歴を保存</li>
-                                <li>完了時に仮説と最大3つの提案を保存</li>
+                                <li>個別化された確認質問の自動生成</li>
+                                <li>段階的な原因絞り込みプロセス</li>
+                                <li>脳科学的根拠に基づく改善提案</li>
                             </ul>
                         </div>
                     </div>
@@ -224,19 +239,22 @@
                     
                     <div class="grid grid-2">
                         <div>
-                            <h3>プロジェクトの成果</h3>
+                            <h3>実装できた機能</h3>
                             <ul class="feature-list">
-                                <li>Next.js + Prisma + OpenRouterで最小限のプロトタイプを構築</li>
-                                <li>自由記述→確認質問→仮説/提案 という素直な流れを検証</li>
+                                <li>体調報告から脳部位・行動パターンを推定するLLM分析</li>
+                                <li>はい/いいえ形式の自動質問生成と対話履歴の管理</li>
+                                <li>個人プロフィールを考慮した改善提案の生成</li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3>技術的・学術的な学び</h3>
+                            <h3>実装上の課題と改善点</h3>
                             <ul class="feature-list">
-                                <li>LLM出力のJSON抽出と最低限のバリデーション運用</li>
-                                <li>はい/いいえ中心の質問設計の扱いやすさ</li>
-                                <li>履歴保存と段階的対話のシンプルな実装</li>
+                                <li><strong>UX：</strong>エラー状態が永続してしまい、成功後も過去のエラーメッセージが画面に残る。各処理の冒頭でエラーをクリアする必要がある</li>
+                                <li><strong>パフォーマンス：</strong>フォローアップ回数に上限がなく、対話履歴が肥大化してAPI課金が増加。ラウンド数制限と履歴の別テーブル化が必要</li>
+                                <li><strong>アクセシビリティ：</strong>はい/いいえボタンがスクリーンリーダーで状態を伝えられない。aria属性とrole指定の追加が必要</li>
+                                <li><strong>コード品質：</strong>analysisResultカラムに初期分析と最終分析を混在させており、型の不一致でエラーが起きる。カラムの分離が必要</li>
+                                <li><strong>要件との齟齬：</strong>初期アンケート未完了でも解析できてしまい、個別最適化の価値が担保されない。アンケート完了チェックの追加が必要</li>
                             </ul>
                         </div>
                     </div>
@@ -245,7 +263,7 @@
                 <!-- 今後の展望 -->
                 <div class="highlight-box" style="margin-top: var(--space-8);">
                     <h4>今後の展望・拡張可能性</h4>
-                    <p>現状はプロトタイプ段階です。今後は、(1) LLMプロンプトとJSON抽出の安定化、(2) バリデーションとエラーメッセージの改善、(3) ダッシュボードの操作性（履歴の見やすさ等）の微調整、といった小さな改善を中心に進めます。大きな拡張（外部データ連携など）は、必要性が明確になった段階で検討します。</p>
+                    <p>現状は基本的な機能が動く状態ですが、実用レベルにはまだ課題が多く残っています。まずは上記で挙げた5つの課題（エラー状態管理、ラウンド数制限、アクセシビリティ対応、型安全性、アンケート必須化）を一つずつ着実に解決していく必要があります。その後、LLMへのプロンプト改善による分析精度の向上や、初期アンケートの質問項目の見直しなど、基礎固めを優先して取り組んでいきます。高度な機能の追加は、これらの土台がしっかりしてからの検討課題です。</p>
                 </div>
 
                 <!-- 次のプロジェクト -->
