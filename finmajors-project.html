@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finmajors News Vol7 - プロジェクト詳細</title>
+    <meta name="description" content="中央銀行ニュースを収集・要約し、公開UI/管理UI/公開APIを提供するFinmajors News Vol7のプロジェクト概要です。">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand" aria-label="ホームに戻る">鈴木皆人</a>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">ホーム</a></li>
+                <li role="none"><a href="index.html#projects" class="nav-link active" role="menuitem">プロジェクト</a></li>
+                <li role="none"><a href="index.html#about" class="nav-link" role="menuitem">プロフィール</a></li>
+                <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">コンタクト</a></li>
+            </ul>
+            
+            <div class="contact-dropdown">
+                <button class="button button-primary tappable contact-trigger" aria-label="お問い合わせ方法を選択" aria-expanded="false">
+                    お問い合わせ
+                    <span class="dropdown-icon">▾</span>
+                </button>
+                <div class="contact-options" role="menu" aria-hidden="true">
+                    <a href="mailto:minato2ban@icloud.com?subject=%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%81%8B%E3%82%89%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%A6%E3%80%82%0D%0A%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E3%81%94%E7%94%A8%E4%BB%B6%EF%BC%9A%0D%0A%0D%0A%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%84%E3%81%9F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82" 
+                       class="contact-option" role="menuitem">
+                        <span class="contact-icon">✉️</span>
+                        メールアプリで開く
+                    </a>
+                    <button class="contact-option copy-email-btn" role="menuitem" data-email="minato2ban@icloud.com">
+                        <span class="contact-icon">📋</span>
+                        メールアドレスをコピー
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- プロジェクトヒーロー -->
+        <section class="project-hero section">
+            <div class="container">
+                <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
+                
+                <h1>Finmajors News Vol7</h1>
+                <p class="hero-subtitle">中央銀行ニュース自動収集・要約プラットフォーム</p>
+                
+                <p class="hero-description">
+                    FRBやECBなど主要中央銀行の要人発言ニュースを毎時自動収集し、AI要約付きで配信するWebアプリです。Google Newsから記事を取得し、要人名の言及回数でフィルタリング、OpenAIで3文要約を生成して、フィルタ・検索機能付きのニュースサイトとして公開しています。
+                </p>
+            </div>
+        </section>
+
+        <!-- プロジェクト詳細 -->
+        <section class="section">
+            <div class="container">
+                <!-- リポジトリ -->
+                <div>
+                    <h2>リポジトリ</h2>
+                    <p class="text-sub">GitHub上でソースコードと運用ガイドを公開しています。</p>
+                    <div class="repo-links">
+                        <a href="https://github.com/Minatoo00/finmajors-news-vol7" class="button button-secondary" target="_blank" rel="noopener">GitHub リポジトリ</a>
+                        <a href="https://github.com/Minatoo00/finmajors-news-vol7#readme" class="button button-tertiary" target="_blank" rel="noopener">README</a>
+                    </div>
+                </div>
+
+                <!-- プロジェクトメタ情報 -->
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト期間</div>
+                        <div class="project-meta-value">2025年10月</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">役割</div>
+                        <div class="project-meta-value">フルスタック開発・収集ジョブ設計</div>
+                    </div>
+                    
+                    <div class="project-meta-item">
+                        <div class="project-meta-label">プロジェクト種別</div>
+                        <div class="project-meta-value">個人開発・ニュース配信基盤</div>
+                    </div>
+                </div>
+
+                <!-- 課題と解決アプローチ -->
+                <div class="grid grid-2" style="margin-top: var(--space-8);">
+                    <div>
+                        <h2>解決したい課題</h2>
+                        <p>中央銀行要人の発言やリークは市場インパクトが大きい一方、ニュースの一次情報は分散し、短縮URL経由では真偽を追いづらい課題がありました。手元で以下をまとめて確認できる環境を目指しました。</p>
+                        
+                        <ul class="feature-list">
+                            <li>Google News短縮リンクを正規URLへ展開し、オリジナル記事にすぐアクセスしたい</li>
+                            <li>人物・所属機関・媒体・期間でニュースを素早く絞り込みたい</li>
+                            <li>管理用の人物辞書をAPI/GUI経由で更新し、収集ジョブへ即反映したい</li>
+                            <li>要約の品質とジョブの成功/失敗を統計として確認し、Cron運用を楽にしたい</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2>解決アプローチ</h2>
+                        <p>毎時実行される自動収集ジョブで、人物辞書に基づいてニュースを取得・要約・配信する仕組みを構築しました：</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Step 1: Google News RSS取得</h4>
+                            <p>人物辞書に登録された各要人（パウエル議長、ラガルド総裁など）について、Google News RSSから最新記事を取得</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>Step 2: 記事本文取得と要人言及チェック</h4>
+                            <p>短縮URLを正規URLに展開し、Playwrightで記事本文を抽出。要人名・エイリアスの言及回数が閾値（デフォルト2回）以上の記事のみを採用</p>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <h4>Step 3: AI要約生成と公開</h4>
+                            <p>OpenAI APIで「3文以内、市場への影響が明確になるように」要約を生成。重複排除後、フィルタ・検索機能付きのニュースサイトで即時公開</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 主要機能 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>主要機能</h2>
+                    <p class="text-sub">収集ジョブ・公開UI・管理UIの3本柱で構成しています。</p>
+                    
+                    <div class="grid grid-auto" style="margin-top: var(--space-6);">
+                        <article class="card">
+                            <h3>🛰️ 自動ニュース収集ジョブ</h3>
+                            <p>人物辞書に基づいてGoogle News RSSを取得し、記事本文を抽出してOpenAIで3文要約を生成します。要人名の言及回数でフィルタリングし、重複排除後にデータベースに保存。Railway Cronで毎時実行され、統計情報も記録します。</p>
+                            <ul class="feature-list">
+                                <li>並列処理・タイムアウト・リトライ回数を環境変数で調整可能</li>
+                                <li>記事のハッシュ値による重複排除機能</li>
+                                <li>収集成功・失敗・重複件数の統計記録</li>
+                            </ul>
+                        </article>
+
+                        <article class="card">
+                            <h3>📰 公開ニュースUI & API</h3>
+                            <p>/news では人物・媒体・期間フィルタとカーソルページネーションを提供し、JSTタイムスタンプ付きの要約カードを即時表示。APIは GET /api/articles、<wbr>/api/articles/{id}、<wbr>/api/persons、<wbr>POST /api/resolve を実装し、外部アプリでもデータを再利用できます。</p>
+                            <ul class="feature-list">
+                                <li>Suspense + SkeletonでLCPを短縮</li>
+                                <li>人物辞書をprisma経由で取得し、選択肢を自動更新</li>
+                                <li>Playwright ChromiumでGoogle News短縮URLを正規URLへ展開</li>
+                            </ul>
+                        </article>
+
+                        <article class="card">
+                            <h3>🛠️ 管理画面と人物辞書</h3>
+                            <p>Basic認証とIP制限で保護された管理画面から、収集対象の要人情報を登録・更新できます。要人名、エイリアス、所属機関を管理し、変更は即座にニュース収集ジョブに反映されます。</p>
+                            <ul class="feature-list">
+                                <li>人物・エイリアス・機関情報の一覧表示と編集フォーム</li>
+                                <li>入力バリデーションとリアルタイム更新</li>
+                                <li>IP許可リストによる管理機能へのアクセス制御</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- 使用技術 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>使用技術</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>フロントエンド・サーバー</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Next.js 15</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Tailwind CSS</span>
+                                <span class="skill-tag">NextAuth</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>データ・ジョブ</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Prisma</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">OpenAI API</span>
+                                <span class="skill-tag">Playwright</span>
+                                <span class="skill-tag">Railway Cron</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- アーキテクチャと運用 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>アーキテクチャ概要</h2>
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>アプリ構成</h3>
+                            <ul class="feature-list">
+                                <li>App Routerで公開UI/管理UI/Route Handler(API)を一元管理</li>
+                                <li>middlewareでBasic認証とIP制限を適用し、管理系エンドポイントを保護</li>
+                                <li>tests/ 配下でAPI・UI・収集ロジックのnode:testを用意</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>ジョブオーケストレーション</h3>
+                            <ul class="feature-list">
+                                <li>ENABLE_INTERNAL_CRONでアプリ内スケジューラをON/OFF</li>
+                                <li>Railway Cronから `npm run ingest:run` を叩いて運用</li>
+                                <li>ingest_job_runテーブルで挿入/重複/エラー件数と所要時間を可視化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 成果と課題 -->
+                <div style="margin-top: var(--space-8);">
+                    <h2>成果と今後の改善</h2>
+                    
+                    <div class="grid grid-2">
+                        <div>
+                            <h3>実装できたこと</h3>
+                            <ul class="feature-list">
+                                <li>収集ジョブ・公開UI・管理UI・APIを単一レポジトリで横断的に構築</li>
+                                <li>Playwright + Headless Chromiumで短縮URLを確実に展開</li>
+                                <li>Prisma Schema/Seederで人物辞書を再現できる形に整理</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>認識している課題</h3>
+                            <ul class="feature-list">
+                                <li>ジョブの同時実行制御や重複実行防止の仕組みは最小限のため、Railway Cron側での工夫が必要</li>
+                                <li>Playwrightの起動コストが高く、resolve APIのスループットはまだ十分ではない</li>
+                                <li>UIテストは最低限のため、より多くのユースケースを自動化したい</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 今後の展望 -->
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>今後の展望・拡張可能性</h4>
+                    <p>まずは収集ジョブのロック機構や監視を整備し、Playwrightを使わないURL解決（拡張HTTPクライアント）を検証して運用コストを下げたいと考えています。その後、ニュース要約の検証データを増やし、OpenAI以外のモデルにも切り替えられるよう抽象化を進めます。公開UIはSSRキャッシュとOGP生成を追加し、社内外の利用者にとってより扱いやすい形を目指します。</p>
+                </div>
+
+                <!-- 次のプロジェクト -->
+                <div style="margin-top: var(--space-8); text-align: center;">
+                    <a href="veo3-project.html" class="button button-primary">
+                        次のプロジェクト: Veo3 プロンプト生成ツール
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer style="background: var(--bg-elev); padding: var(--space-6) 0; text-align: center; border-top: 1px solid var(--border);">
+        <div class="container">
+            <p class="text-caption">
+                © 2025 鈴木皆人（Minato Suzuki）. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

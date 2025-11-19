@@ -54,16 +54,16 @@
         <section id="home" class="hero section">
             <div class="container">
                 <h1 class="hero-title">
-                    AI駆動開発で<br>
-                    技術の可能性を探求
+                    AI支援ツールを活用した<br>
+                    個人開発実践中
                 </h1>
                 
                 <p class="hero-subtitle">
-                    バイブコーディングエンジニア
+                    学習しながら作る
                 </p>
                 
                 <p class="hero-description">
-                    AI駆動開発によるバイブコーディングを専門とし、LLMを活用したWebアプリケーションや動画生成システムの実装・検証を行っています。脳科学的知見も取り入れながら、PoC（概念実証）を数多く作成し、実証的なアプローチで技術の可能性を探求しています。
+                    2022年にChatGPTと出会い、Web制作を入口にAI活用開発への関心を広げました。現在はAI支援ツール（Cursor、Codex CLI等）を活用しながら、Webアプリケーションの個人開発を通じて実践的に学習しています。基礎力はまだ発展途上ですが、コードの品質や安全性まで意識できるエンジニアを目指して日々取り組んでいます。
                 </p>
                 
                 <div class="flex flex-center flex-gap">
@@ -84,6 +84,30 @@
                 <p class="text-sub">AI・LLMを活用した実装プロジェクトをご紹介します。</p>
                 
                 <div class="grid grid-auto" style="margin-top: var(--space-8);">
+                    <!-- Finmajors News Vol7 -->
+                    <article class="card project-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Finmajors News Vol7</h3>
+                            <p class="card-subtitle">ニュース収集プラットフォーム</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="card-description">主要中央銀行の要人発言ニュースをRSSから自動収集し、OpenAIで要約した結果を公開UI・REST API・管理UIで提供するプラットフォームです。Playwrightによる短縮URL解決や、人物辞書を即時反映できる管理APIも実装しました。</p>
+                            
+                            <div class="skill-tags">
+                                <span class="skill-tag">Next.js 15</span>
+                                <span class="skill-tag">Prisma</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">OpenAI API</span>
+                                <span class="skill-tag">Playwright</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="finmajors-project.html" class="button button-primary">詳細を見る</a>
+                        </div>
+                    </article>
+
                     <!-- Veo3動画生成ツール -->
                     <article class="card project-card">
                         <div class="card-header">
@@ -140,13 +164,13 @@
                         </div>
                         
                         <div class="card-content">
-                            <p class="card-description">TikTok動画URLからMP4ファイルを生成するツールです。複数のAPIへのフォールバック設計により高い可用性を実現し、エラー処理とレート制御を考慮したユーザーフレンドリーな実装を行いました。</p>
+                            <p class="card-description">無料のTikTokダウンロードAPIを順に試し、取得した動画をサイズ上限付きでストリーム保存する小さなWebアプリです。CORS許可リストや自動クリーンアップで公開運用のリスクを抑えつつ、シンプルな操作とエラー案内を心がけました。</p>
                             
                             <div class="skill-tags">
                                 <span class="skill-tag">API連携</span>
                                 <span class="skill-tag">ストリーム処理</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Express</span>
                                 <span class="skill-tag">JavaScript</span>
                             </div>
                         </div>
@@ -166,82 +190,26 @@
                 <p class="text-sub">日常的に活用しているAI支援ツールと、開発フローへの組み込み方を紹介します。</p>
 
                 <div class="grid grid-auto" style="margin-top: var(--space-8);">
-                    <!-- Cursor -->
-                    <article class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Cursor</h3>
-                            <p class="card-subtitle">設計・実装（主にClaude 4 sonnet）</p>
-                        </div>
-
-                        <div class="card-content">
-                            <p class="card-description">要件定義から設計書を作成し、そのまま実装まで進める際に主力で使用。実装の難しさが高くない場合は、CursorでClaude 4 sonnetを用いて実装します（ソフトウェア開発のデザイン面に強いため）。</p>
-
-                            <ul class="feature-list">
-                                <li>設計書ドラフトの生成と見直し→実装まで一貫対応</li>
-                                <li>Cmd‑K（インライン編集）/ エージェントで複数ファイルの差分を安全適用</li>
-                                <li>レポジトリ文脈を参照したチャットと高精度Tab補完</li>
-                            </ul>
-
-                            <div class="skill-tags">
-                                <span class="skill-tag">設計書作成</span>
-                                <span class="skill-tag">Claude 4 sonnet</span>
-                                <span class="skill-tag">差分適用</span>
-                            </div>
-                        </div>
-
-                        <div class="card-actions">
-                            <a href="https://www.cursor.com/" target="_blank" rel="noopener" class="button button-secondary">公式サイト</a>
-                        </div>
-                    </article>
-
-                    <!-- Codex CLI -->
-                    <article class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Codex CLI</h3>
-                            <p class="card-subtitle">高難度実装 / 変更・リファクタ（gpt-5-codex medium）</p>
-                        </div>
-
-                        <div class="card-content">
-                            <p class="card-description">実装の難しさが高い場合に採用。完成後の機能追加や変更・リファクタでは、Codexのgpt-5-codex mediumモデルを使用します（ソースコードのコンテキスト理解に長けているため）。複雑な既存システムへの変更も安全に実行できます。</p>
-
-                            <ul class="feature-list">
-                                <li>高難度タスク向けの設計・実装支援と複雑なロジック構築</li>
-                                <li>既存コードの文脈を踏まえた変更提案とリファクタリング</li>
-                                <li>Git差分を前提とした安全な適用・検証とテスト実行</li>
-                            </ul>
-
-                            <div class="skill-tags">
-                                <span class="skill-tag">gpt-5-codex medium</span>
-                                <span class="skill-tag">コンテキスト理解</span>
-                                <span class="skill-tag">リファクタリング</span>
-                            </div>
-                        </div>
-
-                        <div class="card-actions">
-                            <a href="#about" class="button button-secondary">ワークフローを見る</a>
-                        </div>
-                    </article>
-
                     <!-- ChatGPT -->
                     <article class="card">
                         <div class="card-header">
                             <h3 class="card-title">ChatGPT</h3>
-                            <p class="card-subtitle">技術調査 / 要件定義書作成</p>
+                            <p class="card-subtitle">技術調査 / 要件定義・設計書作成</p>
                         </div>
 
                         <div class="card-content">
-                            <p class="card-description">作成したいWebアプリの技術調査を行い、最低限の主要な使用技術を含む要件定義書を作成します。以後の設計・実装に必要な前提を短時間で固め、開発の方向性を明確化します。</p>
+                            <p class="card-description">作成したいWebアプリの技術調査を行い、要件定義書と設計書を作成して仕様を固めます。主要な使用技術の選定から、制約条件・非機能要件の整理まで、以後の開発に必要な前提を短時間で明確化します。</p>
 
                             <ul class="feature-list">
-                                <li>主要技術候補の洗い出しと比較・選定および推奨構成の提案</li>
-                                <li>制約条件・非機能要件の整理と言語化およびリスク分析</li>
-                                <li>要件定義書ドラフトの生成と改訂および仕様の最終確認</li>
+                                <li>主要技術候補の洗い出しと比較・選定</li>
+                                <li>要件定義書と設計書のドラフト生成</li>
+                                <li>制約条件・非機能要件の整理と仕様の最終確認</li>
                             </ul>
 
                             <div class="skill-tags">
                                 <span class="skill-tag">技術調査</span>
                                 <span class="skill-tag">要件定義書</span>
-                                <span class="skill-tag">仕様策定</span>
+                                <span class="skill-tag">設計書作成</span>
                             </div>
                         </div>
 
@@ -249,18 +217,73 @@
                             <a href="https://chatgpt.com" target="_blank" rel="noopener" class="button button-secondary">ChatGPTを開く</a>
                         </div>
                     </article>
+
+                    <!-- Codex CLI -->
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Codex CLI</h3>
+                            <p class="card-subtitle">実装・変更・リファクタ</p>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="card-description">ChatGPTで作成した要件定義書と設計書を元に、仕様駆動開発で実装を進める主力ツールです。ソースコードのコンテキスト理解に長けているため、完成後の機能追加や変更・リファクタリング、コードレビューでも活用しています。</p>
+
+                            <ul class="feature-list">
+                                <li>要件・設計書に基づく仕様駆動開発での実装</li>
+                                <li>既存コードの文脈を踏まえた変更提案とリファクタリング</li>
+                                <li>コードレビューとGit差分を前提とした安全な適用・検証</li>
+                            </ul>
+
+                            <div class="skill-tags">
+                                <span class="skill-tag">仕様駆動開発</span>
+                                <span class="skill-tag">コンテキスト理解</span>
+                                <span class="skill-tag">リファクタリング</span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="#workflow" class="button button-secondary">ワークフローを見る</a>
+                        </div>
+                    </article>
+
+                    <!-- Cursor -->
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Cursor</h3>
+                            <p class="card-subtitle">デザイン実装 / Codex CLI呼び出し</p>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="card-description">Codex以外のモデル（Claude等）でデザイン面の実装が必要な際に使用します。また、Cursorエディタのターミナルを起動してCodex CLIを呼び出すという使い方もしています。</p>
+
+                            <ul class="feature-list">
+                                <li>デザイン面に強いモデル（Claude等）での実装</li>
+                                <li>Cursorターミナル経由でのCodex CLI呼び出し</li>
+                            </ul>
+
+                            <div class="skill-tags">
+                                <span class="skill-tag">Claude</span>
+                                <span class="skill-tag">デザイン実装</span>
+                                <span class="skill-tag">Codex CLI連携</span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="https://www.cursor.com/" target="_blank" rel="noopener" class="button button-secondary">公式サイト</a>
+                        </div>
+                    </article>
                 </div>
 
-                <div class="highlight-box" style="margin-top: var(--space-8);">
+                <div id="workflow" class="highlight-box" style="margin-top: var(--space-8); scroll-margin-top: 80px;">
                     <h4>開発フローと意思決定基準</h4>
                     <ul class="feature-list">
-                        <li>Step 1（ChatGPT）: 技術調査 → 主要技術を含む要件定義書を作成</li>
-                        <li>Step 2: 実装の難しさを評価（レベル感の判定）</li>
-                        <li>Step 3（実装方針）:
-                            <br>・難易度が高い → Codex を使用
-                            <br>・それ以外 → CursorでClaude 4 sonnetを使用して設計・実装（多くのケースで採用。デザイン面に強い）
+                        <li>Step 1（ChatGPT）: 技術調査 → 要件定義書と設計書を作成して仕様を固める</li>
+                        <li>Step 2（Codex CLI）: 要件・設計書に基づき仕様駆動開発で実装</li>
+                        <li>Step 3（Codex CLI / Cursor）: 完成後の機能追加・変更・リファクタ・コードレビュー
+                            <br>・基本的にCodex CLIを使用
+                            <br>・デザイン面の実装が必要な場合はCursorでClaude等を使用
                         </li>
-                        <li>Step 4（変更・拡張）: 完了後の機能追加・変更・リファクタは Codex の gpt-5-codex medium を使用（コード文脈理解に強い）</li>
+                        <li>※ Cursorエディタのターミナルを起動してCodex CLIを呼び出すワークフローも活用</li>
                     </ul>
                 </div>
             </div>
@@ -286,7 +309,7 @@
                         <div style="margin-top: var(--space-4);">
                             <p><strong>2019–2022：</strong>宮崎県立宮崎西高等学校</p>
                             <p><strong>2022–2023：</strong>カナダ・Tamwood（Language School / Digital Marketing）</p>
-                            <p><strong>現在：</strong>AI駆動型の開発ワークフロー（バイブコーディング）を中心に、Webアプリや動画生成システムの実装・検証を推進中</p>
+                            <p><strong>現在：</strong>働きながらAI支援ツールを活用した個人開発を継続し、基礎力を固めつつ実践的な学習を続けています</p>
                         </div>
 
                         <h3 style="margin-top: var(--space-6);">AI駆動開発への取り組み</h3>
@@ -299,44 +322,36 @@
                     <!-- スキル -->
                     <div>
                         <h3>技術スキル</h3>
+                        <p class="text-sub" style="margin-top: var(--space-2);">主に学習・使用している技術（Webアプリ開発）</p>
                         
                         <div style="margin-top: var(--space-4);">
-                            <h4>プログラミング言語</h4>
+                            <h4>フロントエンド</h4>
                             <div class="skill-tags">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">JavaScript</span>
-                                <span class="skill-tag">Bash/Shell</span>
-                            </div>
-                        </div>
-
-                        <div style="margin-top: var(--space-5);">
-                            <h4>フレームワーク・ライブラリ</h4>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Flask</span>
-                                <span class="skill-tag">FastAPI</span>
-                                <span class="skill-tag">React</span>
                                 <span class="skill-tag">Next.js</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Tailwind CSS</span>
                             </div>
                         </div>
 
                         <div style="margin-top: var(--space-5);">
-                            <h4>AI・クラウド・ツール</h4>
+                            <h4>バックエンド・API</h4>
                             <div class="skill-tags">
-                                <span class="skill-tag">Vertex AI</span>
-                                <span class="skill-tag">OpenRouter</span>
-                                <span class="skill-tag">Google Cloud</span>
-                                <span class="skill-tag">Docker</span>
-                                <span class="skill-tag">Git/GitHub</span>
-                                <span class="skill-tag">SQLite</span>
-                                <span class="skill-tag">Firebase</span>
+                                <span class="skill-tag">Next.js Route Handler</span>
+                                <span class="skill-tag">Prisma</span>
+                                <span class="skill-tag">PostgreSQL</span>
                             </div>
                         </div>
 
                         <div style="margin-top: var(--space-5);">
-                            <h4>動画・メディア制作</h4>
+                            <h4>開発環境・ツール</h4>
                             <div class="skill-tags">
-                                <span class="skill-tag">Adobe Premiere Pro</span>
-                                <span class="skill-tag">CapCut</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">ESLint</span>
+                                <span class="skill-tag">Vercel</span>
+                                <span class="skill-tag">Railway</span>
                             </div>
                         </div>
                     </div>
@@ -345,10 +360,17 @@
                 <div style="margin-top: var(--space-8); text-align: center;">
                     <h3>開発スタイル</h3>
                     <p class="text-sub" style="max-width: 600px; margin: var(--space-4) auto 0;">
-                        PoC（概念実証）を数多く作成し、実証的なアプローチで技術の可能性を探求。
-                        AI支援開発ツールを活用したバイブコーディングにより、
-                        迅速なプロトタイピングと検証サイクルを実現しています。
+                        要件定義・設計書から実装まで、AI支援ツールを活用した仕様駆動開発を実践しています。動くものを作ることは大前提ですが、AIに作ってもらったコードをそのまま使うのではなく、自分でも勉強して理解を深めることを大切にしています。まだ基礎力は十分ではありませんが、コードの品質や保守性・可読性・安全性を意識できるエンジニアになれるよう学習を続けています。
                     </p>
+                </div>
+
+                <div class="highlight-box" style="margin-top: var(--space-8);">
+                    <h4>Core Web Vitals への配慮</h4>
+                    <ul class="feature-list">
+                        <li><strong>LCP:</strong> 最大要素表示時間は2.5秒以下を目標に、画像最適化と初期表示の軽量化を心がけています。</li>
+                        <li><strong>CLS:</strong> スケルトンUIや固定寸法のコンポーネントを用い、レイアウトのズレを抑えています。</li>
+                        <li><strong>INP:</strong> ローディング表示や即時フィードバックを徹底し、操作応答の体感を損なわないようにしています。</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -358,7 +380,6 @@
             <div class="container">
                 <div style="text-align: center; max-width: 600px; margin: 0 auto;">
                     <h2>お問い合わせ</h2>
-                    <p class="text-sub">プロジェクトのご相談やコラボレーションのご提案など、お気軽にお声がけください。</p>
                     
                     <div style="margin-top: var(--space-8);">
                         <div class="flex flex-center flex-gap">

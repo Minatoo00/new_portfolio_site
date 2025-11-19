@@ -47,10 +47,10 @@
                 <a href="index.html#projects" class="back-button">プロジェクト一覧に戻る</a>
                 
                 <h1>TikTok → MP4 変換ツール</h1>
-                <p class="hero-subtitle">順次フォールバックとシンプルなUI</p>
+                <p class="hero-subtitle">多段APIフォールバックと安全なダウンロード</p>
                 
                 <p class="hero-description">
-                    TikTok動画URLからMP4を保存するシンプルなWebアプリです。無料のAPIを順番に試し、取得できた動画URLをサーバー側でストリーム保存してからダウンロードリンクを返します。
+                    無料のTikTokダウンロードAPIを順番に試行し、取得した動画をサーバーでサイズ上限付きストリーム保存してからダウンロードリンクを返すシンプルなWebアプリです。CORS許可リストや自動クリーンアップを備え、公開運用でも扱いやすい設計にしています。
                 </p>
             </div>
         </section>
@@ -110,18 +110,18 @@
                         <p>信頼性を重視した3層のフォールバック戦略で、様々な状況に対応できる堅牢なシステムを構築しました：</p>
                         
                         <div class="highlight-box">
-                            <h4>Layer 1: 外部API群</h4>
-                            <p>4つのサービス（TikWM、SSSTik、SnapTik、TiklyDown）を順次試行。各APIで15秒タイムアウト、HD画質を優先して取得</p>
+                            <h4>Layer 1: 公開APIフォールバック</h4>
+                            <p>TikWM / SSSTik / SnapTik / TiklyDown の4 APIを15秒タイムアウトで順に試し、最初に得られたHDまたは標準画質のURLを採用します。</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Layer 2: 安全なストリーム保存</h4>
+                            <p>取得した動画URLをサーバーでストリーム保存し、Content-Lengthと受信バイト数を上限（デフォルト80MB）で監視。超過時は即中断してユーザーに再試行を促します。</p>
                         </div>
                         
                         <div class="highlight-box">
-                            <h4>Layer 2: Puppeteerスクレイピング</h4>
-                            <p>API群が失敗した場合、ChromeでTikTokページを開いて動画URLを直接抽出。MP4とHLS形式の両方に対応</p>
-                        </div>
-                        
-                        <div class="highlight-box">
-                            <h4>Layer 3: yt-dlp最終フォールバック</h4>
-                            <p>スクレイピングも失敗した場合、yt-dlpによる最終手段。FFmpegと連携してHLS結合やフォーマット変換を実行</p>
+                            <h4>Layer 3: 配布とクリーンアップ</h4>
+                            <p>ダウンロード専用ルートで安全に配布し、ダウンロード後またはTTL（デフォルト30分）経過で自動削除。誤公開やストレージ逼迫を防ぎます。</p>
                         </div>
                     </div>
                 </div>
@@ -129,36 +129,36 @@
                 <!-- 主要機能 -->
                 <div style="margin-top: var(--space-8);">
                     <h2>主要機能</h2>
-                    <p class="text-sub">信頼性の高い動画変換を実現する3層のフォールバック機能を実装しています。</p>
+                    <p class="text-sub">外部APIへの依存を前提に、失敗時の挙動をできるだけ穏やかにする多層フォールバックを用意しました。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
                             <h3>🔄 多段階フォールバック</h3>
                             <p>複数の変換手法を組み合わせて、失敗時の代替手段を確保。一つの方法が失敗しても自動的に次の方法を試行します。</p>
                             <ul class="feature-list">
-                                <li>外部API群（TikWM、SSSTik、SnapTik、TiklyDown）</li>
-                                <li>Puppeteerによるページスクレイピング</li>
-                                <li>yt-dlpによる最終フォールバック</li>
+                                <li>外部API群（TikWM / SSSTik / SnapTik / TiklyDown）の順次試行</li>
+                                <li>APIごとにレスポンス形式をパースする軽量ロジック</li>
+                                <li>タイムアウト時は即次のAPIへ切り替え</li>
                             </ul>
                         </div>
 
                         <div class="card">
                             <h3>⚡ 高速ストリーム処理</h3>
-                            <p>Node.jsのストリーム機能を活用して、メモリ効率的な動画ダウンロードを実現。大容量ファイルも安定して処理できます。</p>
+                            <p>Node.jsのストリームでメモリ消費を抑えつつ、上限監視と不完全ファイル削除を組み合わせて安全にダウンロードします。</p>
                             <ul class="feature-list">
                                 <li>ストリーミングによるメモリ効率化</li>
-                                <li>自動ファイル名生成（タイトル+タイムスタンプ+UUID）</li>
-                                <li>品質別ダウンロード（HD優先、標準画質フォールバック）</li>
+                                <li>自動ファイル名生成（クリーンなタイトル+タイムスタンプ+UUID）</li>
+                                <li>Content-Lengthと受信バイト数でサイズ上限を監視</li>
                             </ul>
                         </div>
 
                         <div class="card">
                             <h3>🎯 シンプルなUI/UX</h3>
-                            <p>複雑な内部処理を隠し、ユーザーには最小限の操作で最大の結果を提供。リアルタイムフィードバックで進行状況を表示します。</p>
+                            <p>「URL入力→変換開始」の最小ステップで完了。成功／失敗を明確に表示し、再試行ボタンで迷わない導線を意識しました。</p>
                             <ul class="feature-list">
                                 <li>URL入力→変換開始の2ステップ操作</li>
-                                <li>変換中のローディング表示とプログレス</li>
-                                <li>成功/エラー時の詳細情報表示</li>
+                                <li>変換中のローディング表示と簡潔なエラーメッセージ</li>
+                                <li>成功時はタイトル/作成者/品質/ファイル名を提示</li>
                             </ul>
                         </div>
                     </div>
@@ -167,24 +167,24 @@
                 <!-- 開発で得た知見 -->
                 <div style="margin-top: var(--space-8);">
                     <h2>開発で得た知見</h2>
-                    <p class="text-sub">実装過程で学んだ技術的な工夫と、信頼性向上のためのアプローチです。</p>
+                    <p class="text-sub">外部サービスに依存しながらも、ユーザーに迷惑をかけないための現実的な守り方を学びました。</p>
                     
                     <div class="grid grid-2">
                         <div>
                             <h3>多層フォールバックの設計</h3>
                             <ul class="feature-list">
-                                <li>外部API依存の単一障害点を回避する重要性</li>
-                                <li>Puppeteerとyt-dlpによる技術的多様性の確保</li>
-                                <li>各層で異なるタイムアウト設定の最適化</li>
+                                <li>APIごとにレスポンス形式が異なるため、最小限のパーサを用意して失敗時も続きを試す設計の大切さ。</li>
+                                <li>タイムアウトを短く区切り、失敗に素早く気付いて次の手段に移る方が体感的な成功率を上げること。</li>
+                                <li>外部依存が多いサービスでは、ユーザー向けメッセージを簡潔に保ち、内部ログで詳細を残す二段構えが有効。</li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3>ストリーム処理の実践</h3>
+                            <h3>ストリーム処理と安全性</h3>
                             <ul class="feature-list">
-                                <li>大容量ファイルでのメモリ使用量制御</li>
-                                <li>エラー時の不完全ファイル自動削除の重要性</li>
-                                <li>ファイル名衝突を避ける命名戦略の構築</li>
+                                <li>Content-Lengthと受信バイト数を両方監視して、サイズ爆弾を早期遮断する仕組みが必要。</li>
+                                <li>ダウンロード後削除やTTLクリーンアップを入れると、ストレージ運用がぐっと楽になる。</li>
+                                <li>タイトル整形＋UUIDで分かりやすさと衝突回避を両立できる。</li>
                             </ul>
                         </div>
                     </div>
@@ -193,33 +193,33 @@
                 <!-- エラーハンドリング戦略 -->
                 <div style="margin-top: var(--space-8);">
                     <h2>エラーハンドリング</h2>
-                    <p class="text-sub">各層で異なるエラーパターンに対応し、詳細なログとユーザーフレンドリーな通知を実装しています。</p>
+                    <p class="text-sub">失敗は必ず起きる前提で、ユーザーには簡潔な案内を、サーバーには原因特定のログを残すようにしました。</p>
                     
                     <div class="grid grid-auto" style="margin-top: var(--space-6);">
                         <div class="card">
                             <h3>🔍 詳細なエラー分類</h3>
                             <ul class="feature-list">
-                                <li>HTTPステータス別の対応（401/403/502等）</li>
-                                <li>タイムアウト（15秒API、30秒ダウンロード）</li>
-                                <li>JSON解析エラーとレスポンス形式不正</li>
+                                <li>HTTPステータスやレスポンス形式不正を判別してフォールバック</li>
+                                <li>APIは15秒、ダウンロードは30秒のタイムアウトで早めに切り替え</li>
+                                <li>サイズ超過エラーをユーザーに明示</li>
                             </ul>
                         </div>
 
                         <div class="card">
                             <h3>📊 ログとモニタリング</h3>
                             <ul class="feature-list">
-                                <li>各API試行結果のコンソールログ出力</li>
-                                <li>server.logファイルへの詳細記録</li>
-                                <li>品質情報（HD/標準画質）の取得状況表示</li>
+                                <li>各API試行の成否と選択品質をコンソールに記録</li>
+                                <li>Content-Lengthの有無や想定外MIMEを警告ログで把握</li>
+                                <li>ユーザーには簡潔なメッセージのみ返して詳細はサーバー側に保持</li>
                             </ul>
                         </div>
 
                         <div class="card">
                             <h3>🛡️ 堅牢なファイル処理</h3>
                             <ul class="feature-list">
-                                <li>ダウンロード失敗時の不完全ファイル自動削除</li>
-                                <li>ストリーム書き込みエラーの適切な処理</li>
-                                <li>ディレクトリ存在チェックと自動作成</li>
+                                <li>ダウンロード中断時に部分ファイルを即削除</li>
+                                <li>保存ディレクトリの存在確認と自動作成</li>
+                                <li>TTLおよび「ダウンロード後削除」で不要ファイルを残さない</li>
                             </ul>
                         </div>
                     </div>
@@ -255,7 +255,7 @@
                 <!-- 設計思想 -->
                 <div class="highlight-box" style="margin-top: var(--space-8);">
                     <h4>設計で重視した考え方</h4>
-                    <p><strong>信頼性を最優先とした堅牢な設計</strong>：外部サービスに依存する以上、障害は必ず発生するという前提で3層のフォールバック機能を実装。各層で異なる技術（API、スクレイピング、yt-dlp）を使い分けることで、一つの手法が失敗しても自動的に代替手段に切り替わる仕組みを構築しました。</p>
+                    <p><strong>信頼性を最優先とした堅牢な設計</strong>：外部サービスに依存する以上、障害は必ず発生すると考え、複数APIのフォールバックとサイズ監視付きストリーム保存、TTLクリーンアップまでを一連の流れとして組み込みました。どこかで失敗してもユーザー体験が極端に悪化しないよう、早めの切り替えと簡潔な案内を心がけています。</p>
                 </div>
 
                 <!-- 成果と学び -->
@@ -273,11 +273,13 @@
                         </div>
 
                         <div>
-                            <h3>開発で得た経験</h3>
+                            <h3>実装上の課題と改善点</h3>
                             <ul class="feature-list">
-                                <li>Puppeteerを使ったページスクレイピング技術</li>
-                                <li>複数外部サービスの統合とエラーハンドリング</li>
-                                <li>Node.jsストリームAPIの実践的な活用</li>
+                                <li><strong>UX:</strong> 進捗表示がないため長尺動画で不安を与えてしまう。簡単なステップインジケータを入れて安心感を出す必要あり。</li>
+                                <li><strong>パフォーマンス・最適化:</strong> 依存APIが遅いとそのまま待たせてしまう。並列プリフライトや失敗理由別の短タイムアウト調整をまだ入れられていない。</li>
+                                <li><strong>アクセシビリティ:</strong> 通知が色とアイコン頼みで、スクリーンリーダー向けの `aria-live` などが不足。視覚以外の手がかりを追加したい。</li>
+                                <li><strong>コード品質・アーキテクチャ:</strong> ロジックが `app.js` に集約され過ぎており、テストも未整備。ダウンロード処理とAPIパーサを分離して単体テストを書きたい。</li>
+                                <li><strong>機能要件・ビジネス価値:</strong> 無料API依存でSLA不明・法的リスク説明も弱い。利用規約同意と簡易レートリミットを加え、運用リスクを明示すべき。</li>
                             </ul>
                         </div>
                     </div>
@@ -290,11 +292,11 @@
                     
                     <div class="highlight-box" style="margin-top: var(--space-6);">
                         <div style="line-height: 1.8;">
-                            <p><strong>1. URL検証</strong> → TikTok URLの形式確認</p>
-                            <p><strong>2. 外部API試行</strong> → TikWM、SSSTik、SnapTik、TiklyDownを順次実行（各15秒タイムアウト）</p>
-                            <p><strong>3. スクレイピング</strong> → API群が失敗した場合、Puppeteerでページから直接抽出</p>
-                            <p><strong>4. yt-dlp実行</strong> → 最終手段として、yt-dlp + FFmpegで変換</p>
-                            <p><strong>5. ファイル保存</strong> → Node.jsストリームで効率的にMP4保存</p>
+                            <p><strong>1. URL検証</strong> → TikTok / vm.tiktok.com の形式をサーバー側でも確認</p>
+                            <p><strong>2. 外部API試行</strong> → TikWM / SSSTik / SnapTik / TiklyDown を順次実行（各15秒タイムアウト）</p>
+                            <p><strong>3. ストリーム保存</strong> → 受信バイト数とContent-Lengthでサイズを監視しつつ保存</p>
+                            <p><strong>4. ダウンロード配布</strong> → 専用ルートから提供し、必要に応じて即時削除</p>
+                            <p><strong>5. 自動クリーンアップ</strong> → TTLが過ぎたファイルをバックグラウンドで削除</p>
                             <p><strong>6. 結果返却</strong> → ダウンロードリンクと動画情報を表示</p>
                         </div>
                     </div>
@@ -305,6 +307,9 @@
                     <div class="flex flex-center flex-gap">
                         <a href="veo3-project.html" class="button button-secondary">
                             Veo3動画生成ツール
+                        </a>
+                        <a href="finmajors-project.html" class="button button-secondary">
+                            Finmajors News Vol.7
                         </a>
                         <a href="neuro-project.html" class="button button-secondary">
                             脳神経科学アプリ
@@ -330,4 +335,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

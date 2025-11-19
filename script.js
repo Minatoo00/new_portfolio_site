@@ -27,21 +27,32 @@
     // アクティブリンクの更新
     function updateActiveLink() {
         let currentSection = '';
-        const scrollY = window.scrollY + 100; // オフセット調整
+        const scrollY = window.scrollY + 150; // オフセット調整
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
+        // ページ最下部付近の場合、最後のセクションをアクティブに
+        if (windowHeight + window.scrollY >= documentHeight - 100) {
+            const lastSection = Array.from(sections).pop();
+            if (lastSection) {
+                currentSection = lastSection.getAttribute('id');
             }
-        });
+        } else {
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+        }
 
         // アクティブ状態の更新
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === `#${currentSection}` || linkHref === `index.html#${currentSection}`) {
                 link.classList.add('active');
             }
         });
@@ -206,18 +217,21 @@
 
     // Intersection Observer による要素の表示アニメーション
     function initializeScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.card, .hero-title, .hero-subtitle');
+        const animatedElements = document.querySelectorAll('.card, .hero-title, .hero-subtitle, .hero-description, h2');
         
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -100px 0px',
-            threshold: 0.1
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.15
         };
         
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    // 要素ごとに少しずつ遅延させて順番にアニメーション
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 50);
                 }
             });
         }, observerOptions);
@@ -226,6 +240,11 @@
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             animatedElements.forEach(element => {
                 observer.observe(element);
+            });
+        } else {
+            // アニメーション無効の場合は即座に表示
+            animatedElements.forEach(element => {
+                element.classList.add('animate-in');
             });
         }
     }
